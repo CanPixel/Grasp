@@ -33,24 +33,41 @@ public class PlayerInput : MonoBehaviour {
     private float overlayBaseAlpha;
 
     [System.Serializable]
-    public struct ControllerValues {
+    public class ControllerValues {
         public int heartRate;
-        public float xAim, yAim;
+        public int xAim, yAim, click;
+
+        private int lastClick;
+
+        public delegate void ClickEvent();
+        public ClickEvent onClick;
 
         public void Print() {
             if(!PlayerInput.IsDebugging()) return;
-            Debug.Log("[Heart Rate]: " + heartRate + " | (" + xAim + "," + yAim + ")");
+            Debug.Log("[Heart Rate]: " + heartRate + " | (" + xAim + "," + yAim + ") " + click);
         }
 
         public void SetValues(string text) {
-            int.TryParse(text, out heartRate);
-            //this.xAim = xAim;
-            //this.yAim = yAim;
+            string[] splitter = text.Split(':');
+            string[] splitText = splitter[0].Split('|');
+            int.TryParse(splitText[0].Trim(), out heartRate);
+
+            try {
+                string[] joyStick = splitText[1].Replace('(', ' ').Replace(')', ' ').Trim().Split(',');
+                int.TryParse(joyStick[0], out xAim);
+                int.TryParse(joyStick[1], out yAim);
+                int.TryParse(splitter[1], out click);
+            } catch(System.IndexOutOfRangeException) {}
+        }
+
+        public void Tick() {
+            if(lastClick != click && click == 0 && lastClick == 1) onClick.Invoke();
+            lastClick = click;
         }
     }
     public ControllerValues controllerValues;
 
-    void Start() {
+    void Awake() {
         overlay = GetComponent<RawImage>();
         controllerValues = new ControllerValues();
         overlayBaseAlpha = overlay.color.a;
@@ -60,6 +77,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Update() {
         ReadSensor();
+        controllerValues.Tick();
         controllerValues.Print();
     }
 
@@ -98,7 +116,15 @@ public class PlayerInput : MonoBehaviour {
     }
 
     public bool HasConnection() {
-        return controllerValues.heartRate > 0;
+        return true;//controllerValues.heartRate > 0;
+    }
+
+    public static ControllerValues GetControllerValues() {
+        return self.controllerValues;
+    }
+
+    public static void AddClickEvent(ControllerValues.ClickEvent evnt) {
+        self.controllerValues.onClick += evnt;
     }
 
     void OnGUI() {
