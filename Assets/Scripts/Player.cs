@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
         else lightRotation = Mathf.LerpAngle(lightRotation, 180 - Mathf.Atan2(xRad, yRad) * Mathf.Rad2Deg - 90, Time.deltaTime * 8);
         playerLight.transform.rotation = Quaternion.Euler(lightRotation, 90, 0);
 
-        Debug.Log(xRad);
+       // Debug.Log(xRad);
 
         if(xRad < 0) dir = -1;//character.Move(new Vector3(-1, 0, 0), false, false);
         else dir = 1;

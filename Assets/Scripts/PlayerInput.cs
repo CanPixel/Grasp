@@ -50,7 +50,9 @@ public class PlayerInput : MonoBehaviour {
         public void SetValues(string text) {
             string[] splitter = text.Split(':');
             string[] splitText = splitter[0].Split('|');
-            int.TryParse(splitText[0].Trim(), out heartRate);
+            int tempHeart = 0;
+            int.TryParse(splitText[0].Trim(), out tempHeart);
+            if(tempHeart > 0) heartRate = tempHeart;
 
             try {
                 string[] joyStick = splitText[1].Replace('(', ' ').Replace(')', ' ').Trim().Split(',');
