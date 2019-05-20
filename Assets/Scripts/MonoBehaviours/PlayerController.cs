@@ -10,17 +10,18 @@ public class PlayerController : MonoBehaviour
     public float airControlForce = 4;
 
     public bool isGrabbing { get; set; }
+    public bool isCrouching { get; private set; }
     public float ikWeight { get; set; }
     public float ikLookWeight { get; set; }
     public Vector3 desiredIKPosition { get; set; }
     public float desiredIKWeight { get; set; }
     public float desiredIKWeightLeftHand { get; set; }
-    public Animator animator { get; set; }
+    public Animator animator { get; private set; }
     public
 #if UNITY_EDITOR
         new
 #endif
-        Rigidbody rigidbody { get; set; }
+        Rigidbody rigidbody { get; private set; }
     public Transform overrideIKTarget { get; set; }
 
     [SerializeField] float m_JumpHeightMultiplier = 1.8f;
@@ -59,7 +60,6 @@ public class PlayerController : MonoBehaviour
             if (rigidbody.velocity.x < maxXSpeed)
                 rigidbody.AddForce(new Vector3(m_Move.x * airControlForce, 0, 0), ForceMode.Acceleration);
         }
-        m_PlayerCollider.isTrigger = isGrabbing;
         //Turning
         if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f)
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
@@ -67,24 +67,37 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //Input
         m_Move.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             m_Move.x *= 0.2f;
         }
         m_Move.y = Input.GetAxisRaw("Vertical");
+
+        //Grounded Controls
         if (m_Grounded)
         {
-            if (m_Move.y > 0)
+            if (m_Move.y > 0 && !isCrouching)
             {
                 //Jump. Convert current input to velocity and disable Root Motion controls
                 animator.applyRootMotion = false;
                 m_Grounded = false;
                 rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
             }
-            m_PlayerCollider.center = m_Move.y > -.01f ? m_OriginalColliderCenter : m_ColliderCrouchCenter;
-            m_PlayerCollider.size = m_Move.y > -.01f ? m_OriginalColliderSize : m_ColliderCrouchSize;
+            m_PlayerCollider.center = !isCrouching ? m_OriginalColliderCenter : m_ColliderCrouchCenter;
+            m_PlayerCollider.size = !isCrouching ? m_OriginalColliderSize : m_ColliderCrouchSize;
+            if (m_Move.y < 0)
+            {
+                //Crouch
+                isCrouching = true;
+            }
+            if (isCrouching && m_Move.y >= 0)
+            {
+                //Standing after crouch. Requires check if possible.
+                isCrouching = Physics.Raycast(transform.position, transform.up, m_OriginalColliderSize.y, m_GroundLayers);
+            }
         }
 
         Animate();
@@ -98,6 +111,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("JumpCrouch", m_Move.y);
         animator.SetBool("Grounded", m_Grounded);
         animator.SetBool("Grabbing", isGrabbing);
+        animator.SetBool("Crouching", isCrouching);
 
         if (Mathf.Approximately(animator.GetFloat("Speed"), 0) && animator.GetCurrentAnimatorStateInfo(0).IsTag("Active"))
         {

@@ -162,7 +162,7 @@ MonoBehaviour:
     max: 1
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 4000
     min: 0
   mipFogMaxMip:
     m_OverrideState: 1
@@ -179,7 +179,7 @@ MonoBehaviour:
     min: 0
   fogDistance:
     m_OverrideState: 1
-    m_Value: 14
+    m_Value: 40
     min: 0
   fogBaseHeight:
     m_OverrideState: 1

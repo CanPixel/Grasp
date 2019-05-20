@@ -69,7 +69,7 @@ public class PlayerParcours : MonoBehaviour
             Gizmos.DrawWireSphere(rightHand.position, m_GrabRange);
         }
         Gizmos.color = Color.red;
-        if (m_Controller.ikTarget)
+        if (m_Controller && m_Controller.ikTarget)
         {
             if (m_Controller.overrideIKTarget == null)
             {

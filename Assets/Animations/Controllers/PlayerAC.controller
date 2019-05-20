@@ -45,6 +45,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Crouching
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -115,7 +121,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: f66edb018af5ce9438dffa44fa17b442, type: 3}
-    m_Threshold: 1
+    m_Threshold: 0.2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -124,8 +130,8 @@ BlendTree:
   m_BlendParameter: Speed
   m_BlendParameterY: Speed
   m_MinThreshold: 0
-  m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 0.2
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!206 &206561672249671884
@@ -245,6 +251,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: JumpCrouch
     m_EventTreshold: -0.01
+  - m_ConditionMode: 1
+    m_ConditionEvent: Crouching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102036094091898550}
   m_Solo: 0
@@ -323,6 +332,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: JumpCrouch
     m_EventTreshold: -0.01
+  - m_ConditionMode: 1
+    m_ConditionEvent: Crouching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102036094091898550}
   m_Solo: 0
@@ -423,6 +435,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: JumpCrouch
     m_EventTreshold: -0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: Crouching
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102511608996261710}
   m_Solo: 0
