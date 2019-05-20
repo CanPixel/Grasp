@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
             //Enable player to control air movement slightly
             m_Rigidbody.AddForce(new Vector3(m_Move.x, 0, 0));
         }
+
+        //Turning
+        if (Mathf.Abs(m_Move.x) > 0.05f)
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
     }
 
     private void Update()
@@ -69,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     private void Animate()
     {
-        m_Animator.SetFloat("Speed", m_Move.x, moveDampTime, moveDeltaTime);
+        m_Animator.SetFloat("Speed", Mathf.Abs(m_Move.x), moveDampTime, moveDeltaTime);
         m_Animator.SetFloat("JumpCrouch", m_Move.y);
         m_Animator.SetBool("Grounded", m_Grounded);
 
