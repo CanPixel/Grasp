@@ -6,30 +6,45 @@ public class PlayerController : MonoBehaviour
     public Transform ikTarget;
     //Speed for IK smoothness
     public float ikAdaptSpeed = 2;
+    public float maxXSpeed = 5;
+    public float airControlForce = 4;
 
+    public bool isGrabbing { get; set; }
     public float ikWeight { get; set; }
     public float ikLookWeight { get; set; }
     public Vector3 desiredIKPosition { get; set; }
     public float desiredIKWeight { get; set; }
+    public float desiredIKWeightLeftHand { get; set; }
+    public Animator animator { get; set; }
+    public
+#if UNITY_EDITOR
+        new
+#endif
+        Rigidbody rigidbody { get; set; }
+    public Transform overrideIKTarget { get; set; }
 
     [SerializeField] float m_JumpHeightMultiplier = 1.8f;
     [SerializeField] float m_GroundCheckDistance = 0.02f;
     [SerializeField] LayerMask m_GroundLayers = 0;
     [SerializeField] PhysicMaterial m_GroundedMaterial = null, m_AirborneMaterial = null;
+    [SerializeField] Vector3 m_ColliderCrouchSize = new Vector3(0.55f, 1.2f, 0.35f);
+    [SerializeField] Vector3 m_ColliderCrouchCenter = new Vector3(0, 0.6f, 0);
 
     private Vector3 m_Move;
     private Vector3 m_VelocityBuffer;
-    private Animator m_Animator;
     private float m_IdleTimer;
     private bool m_Grounded;
-    private Rigidbody m_Rigidbody;
-    private Collider m_PlayerCollider;
+    private BoxCollider m_PlayerCollider;
+    private Vector3 m_OriginalColliderSize;
+    private Vector3 m_OriginalColliderCenter;
 
     private void Awake()
     {
-        m_Animator = GetComponent<Animator>();
-        m_Rigidbody = GetComponent<Rigidbody>();
-        m_PlayerCollider = GetComponent<Collider>();
+        animator = GetComponent<Animator>();
+        rigidbody = GetComponent<Rigidbody>();
+        m_PlayerCollider = GetComponent<BoxCollider>();
+        m_OriginalColliderCenter = m_PlayerCollider.center;
+        m_OriginalColliderSize = m_PlayerCollider.size;
 
         desiredIKWeight = 1;
     }
@@ -41,11 +56,12 @@ public class PlayerController : MonoBehaviour
         if (!m_Grounded)
         {
             //Enable player to control air movement slightly
-            m_Rigidbody.AddForce(new Vector3(m_Move.x, 0, 0));
+            if (rigidbody.velocity.x < maxXSpeed)
+                rigidbody.AddForce(new Vector3(m_Move.x * airControlForce, 0, 0), ForceMode.Acceleration);
         }
-
+        m_PlayerCollider.isTrigger = isGrabbing;
         //Turning
-        if (Mathf.Abs(m_Move.x) > 0.05f)
+        if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f)
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
     }
 
@@ -58,12 +74,17 @@ public class PlayerController : MonoBehaviour
             m_Move.x *= 0.2f;
         }
         m_Move.y = Input.GetAxisRaw("Vertical");
-        if (m_Grounded && m_Move.y > 0)
+        if (m_Grounded)
         {
-            //Jump. Convert current input to velocity and disable Root Motion controls
-            m_Animator.applyRootMotion = false;
-            m_Grounded = false;
-            m_Rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
+            if (m_Move.y > 0)
+            {
+                //Jump. Convert current input to velocity and disable Root Motion controls
+                animator.applyRootMotion = false;
+                m_Grounded = false;
+                rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
+            }
+            m_PlayerCollider.center = m_Move.y > -.01f ? m_OriginalColliderCenter : m_ColliderCrouchCenter;
+            m_PlayerCollider.size = m_Move.y > -.01f ? m_OriginalColliderSize : m_ColliderCrouchSize;
         }
 
         Animate();
@@ -73,11 +94,12 @@ public class PlayerController : MonoBehaviour
 
     private void Animate()
     {
-        m_Animator.SetFloat("Speed", Mathf.Abs(m_Move.x), moveDampTime, moveDeltaTime);
-        m_Animator.SetFloat("JumpCrouch", m_Move.y);
-        m_Animator.SetBool("Grounded", m_Grounded);
+        animator.SetFloat("Speed", Mathf.Abs(m_Move.x), moveDampTime, moveDeltaTime);
+        animator.SetFloat("JumpCrouch", m_Move.y);
+        animator.SetBool("Grounded", m_Grounded);
+        animator.SetBool("Grabbing", isGrabbing);
 
-        if (Mathf.Approximately(m_Animator.GetFloat("Speed"), 0) && m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Active"))
+        if (Mathf.Approximately(animator.GetFloat("Speed"), 0) && animator.GetCurrentAnimatorStateInfo(0).IsTag("Active"))
         {
             if (m_IdleTimer > 0)
             {
@@ -86,7 +108,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 m_IdleTimer = idleTimer;
-                m_Animator.SetTrigger("Idle");
+                animator.SetTrigger("Idle");
             }
         }
         else
@@ -94,12 +116,13 @@ public class PlayerController : MonoBehaviour
             m_IdleTimer = idleTimer;
         }
 
-        //Enable/Disable ik Look Target Weight during special idle animations
-        ikLookWeight = Mathf.MoveTowards(ikLookWeight, m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Ative") ? 1 : 0, Time.deltaTime * 5);
+        //Enable/Disable ik weights during special animations
+        ikLookWeight = Mathf.MoveTowards(ikLookWeight, animator.GetCurrentAnimatorStateInfo(0).IsTag("Active") ? 1 : 0, Time.deltaTime * 5);
+        desiredIKWeightLeftHand = Mathf.Lerp(desiredIKWeightLeftHand, isGrabbing ? 1 : 0, Time.deltaTime * ikAdaptSpeed * 2);
 
         if (!m_Grounded)
         {
-            m_Animator.SetFloat("Impact", Mathf.Abs(m_Rigidbody.velocity.y));
+            animator.SetFloat("Impact", Mathf.Abs(rigidbody.velocity.y));
         }
     }
 
@@ -109,7 +132,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit ground = new RaycastHit();
 
         m_Grounded = Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, out ground, m_GroundCheckDistance, m_GroundLayers);
-        m_Animator.applyRootMotion = m_Grounded;
+        animator.applyRootMotion = m_Grounded;
         m_PlayerCollider.material = m_Grounded ? m_GroundedMaterial : m_AirborneMaterial;
     }
 
@@ -122,23 +145,34 @@ public class PlayerController : MonoBehaviour
         desiredIKPosition = new Vector3(ray.origin.x + ray.direction.x * 10, ray.origin.y + ray.direction.y * 10, -0.1f);
     }
 
+    public Transform SetIKOverrideTarget(Transform target)
+    {
+        overrideIKTarget = target;
+        return overrideIKTarget;
+    }
+
     private void OnAnimatorIK(int layerIndex)
     {
         ikWeight = Mathf.Lerp(ikWeight, desiredIKWeight, Time.deltaTime * ikAdaptSpeed);
-        ikTarget.position = Vector3.Lerp(ikTarget.position, desiredIKPosition, Time.deltaTime * ikAdaptSpeed);
+        Vector3 ikPosition = overrideIKTarget == null ? desiredIKPosition : overrideIKTarget.position;
+        ikTarget.position = Vector3.Lerp(ikTarget.position, ikPosition, Time.deltaTime * ikAdaptSpeed);
 
         //Right Hand IK
-        m_Animator.SetIKPosition(AvatarIKGoal.RightHand, ikTarget.position);
-        m_Animator.SetIKPositionWeight(AvatarIKGoal.RightHand, ikWeight);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, ikTarget.position);
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, ikWeight);
+
+        //Left Hand IK
+        animator.SetIKPosition(AvatarIKGoal.LeftHand, ikPosition);
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, desiredIKWeightLeftHand);
 
         //Right Hand Rotation IK
-        Vector3 offset = ikTarget.position - m_Animator.GetBoneTransform(HumanBodyBones.RightHand).position;
+        Vector3 offset = ikTarget.position - animator.GetBoneTransform(HumanBodyBones.RightHand).position;
         Quaternion rotation = Quaternion.LookRotation(offset, Vector3.up);
-        m_Animator.SetIKRotation(AvatarIKGoal.RightHand, rotation);
-        m_Animator.SetIKRotationWeight(AvatarIKGoal.RightHand, ikWeight);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, rotation);
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, ikWeight);
 
         //Head Look IK
-        m_Animator.SetLookAtPosition(ikTarget.position);
-        m_Animator.SetLookAtWeight(ikLookWeight);
+        animator.SetLookAtPosition(ikTarget.position);
+        animator.SetLookAtWeight(ikLookWeight, 0.1f, 0.2f);
     }
 }
