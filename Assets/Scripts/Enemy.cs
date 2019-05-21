@@ -30,10 +30,26 @@ public class Enemy : MonoBehaviour {
                     new BAction(this, RangedCharge), new BAction(this, RangedAttack)
                 }), 1)
                 });
-                pathfinding.SetTarget(player.transform);
+                //pathfinding.SetTarget(player.transform);
     }
 
     protected BNode.NodeState CheckHealth() {
+        return BNode.NodeState.SUCCESS;
+    }
+
+    protected BNode.NodeState CheckForSynergies() {
+        return BNode.NodeState.SUCCESS;
+    }
+
+    protected BNode.NodeState MoveInRangeOfPlayer() {
+        return BNode.NodeState.SUCCESS;
+    }
+
+    protected BNode.NodeState RangedCharge() {
+        return BNode.NodeState.SUCCESS;
+    }
+
+    protected BNode.NodeState RangedAttack() {
         return BNode.NodeState.SUCCESS;
     }
 
