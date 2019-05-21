@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
             m_PlayerCollider.size = !isCrouching ? m_OriginalColliderSize : m_ColliderCrouchSize;
             if (m_Move.y < 0)
             {
+                m_Move.x = Mathf.Min(m_Move.x, 0.2f);
                 //Crouch
                 isCrouching = true;
             }
