@@ -23,14 +23,17 @@ public class PlayerInput : MonoBehaviour {
     private static PlayerInput self;
     public static SerialPort stream;
 
+    public Text HeartRateBPM;
     public GameObject ConnectionText;
     private float ConnectionScale = 0;
+    public RawImage overlay;
+    private float overlayBaseAlpha;
 
     public bool debug = false;
     public int baudRate;
 
-    private RawImage overlay;
-    private float overlayBaseAlpha;
+    [Header("Heartrate Color Stages")]
+    public Gradient heartRange;
 
     [System.Serializable]
     public class ControllerValues {
@@ -70,7 +73,6 @@ public class PlayerInput : MonoBehaviour {
     public ControllerValues controllerValues;
 
     void Awake() {
-        overlay = GetComponent<RawImage>();
         controllerValues = new ControllerValues();
         overlayBaseAlpha = overlay.color.a;
         self = this;
@@ -81,6 +83,21 @@ public class PlayerInput : MonoBehaviour {
         ReadSensor();
         controllerValues.Tick();
         controllerValues.Print();
+
+        HeartRateBPM.text = "<color=#" + GetHeartRateColor(controllerValues.heartRate) + ">" + controllerValues.heartRate.ToString() + "</color> BPM";
+        overlay.enabled = !PlayerInput.IsDebugging();
+        if(!PlayerInput.IsDebugging()) HeartRateBPM.enabled = HasConnection();
+    }
+
+    protected string GetHeartRateColor(int rate) {
+        string endColor = "fff";
+        for(int i = 0; i < heartRange.colorKeys.Length; i++) {
+            if(heartRange.colorKeys[i].time >= rate / 100f) {
+                endColor = ColorUtility.ToHtmlStringRGB(heartRange.colorKeys[i].color);
+                break;
+            } 
+        }
+        return endColor;
     }
 
     protected void ReadSensor() {
@@ -118,7 +135,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     public bool HasConnection() {
-        return true;//controllerValues.heartRate > 0;
+        return controllerValues.heartRate > 1;
     }
 
     public static ControllerValues GetControllerValues() {
@@ -134,11 +151,5 @@ public class PlayerInput : MonoBehaviour {
         if(HasConnection()) ConnectionScale = Mathf.Lerp(ConnectionScale, 0, Time.deltaTime * 3);
         else ConnectionScale = Mathf.Lerp(ConnectionScale, 1, Time.deltaTime * 3);
         ConnectionText.transform.localScale = new Vector3(ConnectionScale, ConnectionScale, ConnectionScale); 
-
-         if(PlayerInput.IsDebugging()) return;
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.white;
-        style.fontSize = 32;
-        GUI.Label(new Rect(10, 10, 100, 100), controllerValues.heartRate.ToString(), style);
     }
 }
