@@ -154,13 +154,13 @@ MonoBehaviour:
     supportSubsurfaceScattering: 1
     increaseSssSampleCount: 1
     supportVolumetrics: 1
-    increaseResolutionOfVolumetrics: 1
-    supportLightLayers: 0
+    increaseResolutionOfVolumetrics: 0
+    supportLightLayers: 1
     supportDistortion: 1
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
     supportTransparentDepthPostpass: 1
-    supportedLitShaderMode: 2
+    supportedLitShaderMode: 3
     supportDecals: 1
     msaaSampleCount: 1
     supportMotionVectors: 1
