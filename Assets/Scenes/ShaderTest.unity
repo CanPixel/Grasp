@@ -1196,6 +1196,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3523792661536996518, guid: 9d44054ab67eac9438fe450222c58cf8,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     - target: {fileID: 7356187967750200221, guid: 9d44054ab67eac9438fe450222c58cf8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3152,11 +3157,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8158180931938563505, guid: 377e5faa51faeb14ba20e2558d6614dd,
-        type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 960730583, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
+      propertyPath: flashPoint
+      value: 
+      objectReference: {fileID: 1570744360}
     - target: {fileID: 2761696216241975378, guid: 377e5faa51faeb14ba20e2558d6614dd,
         type: 3}
       propertyPath: m_Shadows.m_Type
@@ -3216,6 +3220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ColorTemperature
       value: 3604
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158180931938563505, guid: 377e5faa51faeb14ba20e2558d6614dd,
+        type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5078583258365858618, guid: 377e5faa51faeb14ba20e2558d6614dd,
         type: 3}
@@ -3277,10 +3286,6 @@ PrefabInstance:
       propertyPath: volumetricShadowDimmer
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 960730583, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
-      propertyPath: flashPoint
-      value: 
-      objectReference: {fileID: 1570744360}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
 --- !u!1001 &1200278233
