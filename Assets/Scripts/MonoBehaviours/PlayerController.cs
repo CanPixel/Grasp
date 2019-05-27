@@ -57,12 +57,10 @@ public class PlayerController : MonoBehaviour
         if (!m_Grounded)
         {
             //Enable player to control air movement slightly
-            if (rigidbody.velocity.x < maxXSpeed)
-                rigidbody.AddForce(new Vector3(m_Move.x * airControlForce, 0, 0), ForceMode.Acceleration);
+            if (rigidbody.velocity.x < maxXSpeed) rigidbody.AddForce(new Vector3(m_Move.x * airControlForce, 0, 0), ForceMode.Acceleration);
         }
         //Turning
-        if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f)
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
+        if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
     }
 
     private void Update()
@@ -70,15 +68,12 @@ public class PlayerController : MonoBehaviour
         //Input
         m_Move.x = Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            m_Move.x *= 0.2f;
-        }
+        if (Input.GetKey(KeyCode.LeftShift)) m_Move.x *= 0.2f;
         m_Move.y = Input.GetAxisRaw("Vertical");
+        if(Input.GetKey(KeyCode.Space)) m_Move.y = 1;
 
         //Grounded Controls
-        if (m_Grounded)
-        {
+        if (m_Grounded) {
             if (m_Move.y > 0 && !isCrouching)
             {
                 //Jump. Convert current input to velocity and disable Root Motion controls
