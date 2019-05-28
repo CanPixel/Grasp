@@ -17,4 +17,9 @@ public class VerySimpleCameraTracker : MonoBehaviour {
     private void Update() {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, Time.deltaTime * smoothness);
     }
+
+    public void ChangeCam(Vector3 offs, float smooth = 1) {
+        offset = offs;
+        smoothness = smooth;
+    }
 }
