@@ -4411,7 +4411,11 @@ Transform:
   - {fileID: 1162384420}
   - {fileID: 717382120}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 21
+=======
+  m_RootOrder: 22
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &902359373
 GameObject:
