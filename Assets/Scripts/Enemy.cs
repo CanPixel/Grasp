@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour {
 
     [HideInInspector]
     public GameObject target;
+
+    [Range(0.1f, 8)]
     public float moveSpeed = 1;
     private float dir = 0, targetDir = 1;
 
@@ -18,6 +20,8 @@ public class Enemy : MonoBehaviour {
     protected BNode behaviorTree;
     protected Rigidbody rb;
     public GameObject player, playerLightPoint;
+
+    private float scareDelay = 0;
 
     public Behavior behavior;    
 
@@ -37,7 +41,6 @@ public class Enemy : MonoBehaviour {
             default:
             case Behavior.MOTH:
                 behaviorTree = new BehaviorTree.Composite.BSequence(new BNode[]{
-                        //new BAction(this, OnScreen), 
                         new BAction(this, CheckTarget), 
                         new BAction(this, Walk),
                     //    new BehaviorTree.Decorator.BTimer(new BehaviorTree.Composite.BSequence(new BNode[] {
@@ -47,7 +50,6 @@ public class Enemy : MonoBehaviour {
                 break;
             case Behavior.VAMPIRE:
                 behaviorTree = new BehaviorTree.Composite.BSequence(new BNode[]{
-                        //new BAction(this, OnScreen), 
                         new BAction(this, CheckTarget), 
                         new BAction(this, Walk),
                     //    new BehaviorTree.Decorator.BTimer(new BehaviorTree.Composite.BSequence(new BNode[] {
@@ -78,14 +80,6 @@ public class Enemy : MonoBehaviour {
             case Behavior.VAMPIRE:
                 if(playerDist < targetRange) target = player;
                 else target = null;
-                if(Flashlight.IsLightOn()) {
-                    float lightX = Mathf.Abs(playerLightPoint.transform.position.x);
-                    float posX = Mathf.Abs(transform.position.x);
-                    float playerX = Mathf.Abs(player.transform.position.x);
-                    targetDir = -1;
-                } else{
-                    targetDir = 1;
-                }
                 break;
         }
         return BNode.NodeState.SUCCESS;
@@ -103,8 +97,19 @@ public class Enemy : MonoBehaviour {
         return BNode.NodeState.SUCCESS;
     }
 
+    public void Scare(Vector3 origin) {
+        if(scareDelay > 0) return;
+        scareDelay = 2;
+        float posX = transform.position.x;  
+    }
+
     void FixedUpdate() {
         behaviorTree.Run();
+        if(scareDelay > 0) {
+            scareDelay -= Time.deltaTime;
+            targetDir = Mathf.Lerp(targetDir, -1, Time.deltaTime * 2);
+        }
+        else targetDir = 1;
     }
 
     protected void MoveToTarget(GameObject target) {
@@ -115,6 +120,6 @@ public class Enemy : MonoBehaviour {
     }
 
     private void move() {
-        rb.MovePosition(rb.position + new Vector3(moveSpeed * dir, 0, 0) / 10f);
+        rb.MovePosition(rb.position + new Vector3((moveSpeed / 10) * dir, 0, 0) / 10f);
     }
 }
