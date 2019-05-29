@@ -565,9 +565,9 @@ GameObject:
   - component: {fileID: 8374870135624841109}
   - component: {fileID: 8374870135615576175}
   - component: {fileID: 8374870135474963741}
-  - component: {fileID: 8374870135474963746}
   - component: {fileID: 8374870135474963744}
   - component: {fileID: 1755557685}
+  - component: {fileID: 8735809629024907270}
   m_Layer: 10
   m_Name: guyon
   m_TagString: Untagged
@@ -627,19 +627,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!65 &8374870135474963746
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8374870135625067445}
-  m_Material: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.55, y: 1.76, z: 0.35}
-  m_Center: {x: -0, y: 0.88, z: 0}
 --- !u!114 &8374870135474963744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +673,20 @@ MonoBehaviour:
   m_GrabMask:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!136 &8735809629024907270
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374870135625067445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.76
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!1 &8374870135625067449
 GameObject:
   m_ObjectHideFlags: 0

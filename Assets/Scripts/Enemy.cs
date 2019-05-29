@@ -29,7 +29,9 @@ public class Enemy : MonoBehaviour {
     private bool grounded;
     [SerializeField] float groundCheckDistance = 0.02f;
     [SerializeField] LayerMask groundLayers = 0;
+    [SerializeField] PhysicMaterial groundedMaterial = null, airborneMaterial = null;
     private bool hurtBeforeStateChange;
+    private CapsuleCollider enemyCollider;
 
     [System.Serializable]
     public enum Behavior {
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour {
     
     void Awake() {
         animator = GetComponent<Animator>();
+        enemyCollider = GetComponent<CapsuleCollider>();
         StartAI();
     }
 
@@ -147,6 +150,7 @@ public class Enemy : MonoBehaviour {
         RaycastHit ground = new RaycastHit();
 
         grounded = Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, out ground, groundCheckDistance, groundLayers);
+        enemyCollider.material = grounded ? groundedMaterial : airborneMaterial;
     }
 
     private void Animate()
