@@ -113,7 +113,7 @@ public class Enemy : MonoBehaviour {
 
     public void Scare(Vector3 origin) {
         if (!hurtBeforeStateChange) {
-            animator.SetTrigger("Hurt");
+            if(animator != null) animator.SetTrigger("Hurt");
             hurtBeforeStateChange = true;
         }
         if(scareDelay > 0) return;
@@ -188,7 +188,7 @@ public class Enemy : MonoBehaviour {
     private void CheckGroundedState()
     {
         RaycastHit ground = new RaycastHit();
-
+        if(animator == null) return;
         grounded = animator.applyRootMotion = Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, out ground, groundCheckDistance, groundLayers);
         enemyCollider.material = grounded ? groundedMaterial : airborneMaterial;
     }
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour {
     private void Animate()
     {
         if (Mathf.Abs(dir) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (dir > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(dir));
-
+        if(animator == null) return;
         animator.SetBool("Grounded", grounded);
         animator.SetFloat("Speed", Mathf.Abs(dir));
     }
