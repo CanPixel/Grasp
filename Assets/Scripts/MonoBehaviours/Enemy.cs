@@ -93,7 +93,10 @@ public class Enemy : MonoBehaviour {
                 break;
             case Behavior.VAMPIRE:
                 if(playerDist < targetRange) target = player;
-                else target = null;
+                else {
+                    target = null;
+                    hurtBeforeStateChange = false;
+                }
                 break;
         }
         return BNode.NodeState.SUCCESS;
