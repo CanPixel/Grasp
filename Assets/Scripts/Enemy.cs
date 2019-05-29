@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using BehaviorTree;
 
 public class Enemy : MonoBehaviour {
@@ -9,7 +7,7 @@ public class Enemy : MonoBehaviour {
     [HideInInspector]
     public GameObject target;
 
-    [Range(0.1f, 8)]
+    [Range(0, 8)]
     public float moveSpeed = 1;
     public float jumpForce = 4;
     public float maxJumpHeight = 4;
@@ -57,18 +55,14 @@ public class Enemy : MonoBehaviour {
                 behaviorTree = new BehaviorTree.Composite.BSequence(new BNode[]{
                         new BAction(this, CheckTarget), 
                         new BAction(this, Walk),
-                    //    new BehaviorTree.Decorator.BTimer(new BehaviorTree.Composite.BSequence(new BNode[] {
-                    //       new BAction(this, RangedCharge), new BAction(this, RangedAttack)
-                    //  }), 1)
+                        new BAction(this, Attack),
                         });
                 break;
             case Behavior.VAMPIRE:
                 behaviorTree = new BehaviorTree.Composite.BSequence(new BNode[]{
-                        new BAction(this, CheckTarget), 
+                        new BAction(this, CheckTarget),
                         new BAction(this, Walk),
-                    //    new BehaviorTree.Decorator.BTimer(new BehaviorTree.Composite.BSequence(new BNode[] {
-                    //       new BAction(this, RangedCharge), new BAction(this, RangedAttack)
-                    //  }), 1)
+                        new BAction(this, Attack),
                         });
                 break;
         }
@@ -102,15 +96,7 @@ public class Enemy : MonoBehaviour {
         return BNode.NodeState.SUCCESS;
     }
 
-    protected BNode.NodeState OnScreen() {
-        return BNode.NodeState.SUCCESS;
-    }
-
-    protected BNode.NodeState RangedCharge() {
-        return BNode.NodeState.SUCCESS;
-    }
-
-    protected BNode.NodeState RangedAttack() {
+    protected BNode.NodeState Attack() {
         return BNode.NodeState.SUCCESS;
     }
 
