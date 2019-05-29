@@ -140,10 +140,10 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7608722307513304836}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.97
+  m_Radius: 0.56
   m_Height: 2.02
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -160,12 +160,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  moveSpeed: 5.2
+  moveSpeed: 0
+  jumpForce: 4
+  maxJumpHeight: 4
   targetRange: 10
-  nearDistance: 3
+  nearDistance: 2
   player: {fileID: 0}
   playerLightPoint: {fileID: 0}
   behavior: 1
+  groundCheckDistance: 0.1
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  groundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
+  airborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
 --- !u!1 &7608722307513304838
 GameObject:
   m_ObjectHideFlags: 0
