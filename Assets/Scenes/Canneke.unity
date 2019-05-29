@@ -4363,8 +4363,46 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 727282654}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1001 &736906983
 PrefabInstance:
+=======
+--- !u!1 &787590954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 787590955}
+  - component: {fileID: 787590958}
+  - component: {fileID: 787590957}
+  - component: {fileID: 787590956}
+  m_Layer: 0
+  m_Name: Cave (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &787590955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787590954}
+  m_LocalRotation: {x: 0.5153627, y: -0, z: -0, w: 0.8569723}
+  m_LocalPosition: {x: 73.3, y: -7.78, z: 2.25}
+  m_LocalScale: {x: 25.312714, y: 1, z: 13.018761}
+  m_Children: []
+  m_Father: {fileID: 2051111065}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 62.043003, y: 0, z: 0}
+--- !u!65 &787590956
+BoxCollider:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
@@ -4771,7 +4809,11 @@ Transform:
   - {fileID: 1162384420}
   - {fileID: 717382120}
   m_Father: {fileID: 0}
+<<<<<<< Updated upstream
   m_RootOrder: 21
+=======
+  m_RootOrder: 22
+>>>>>>> Stashed changes
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &902359373
 GameObject:
