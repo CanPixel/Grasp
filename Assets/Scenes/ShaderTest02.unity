@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 1
-  shadowResolution: 100
+  shadowResolution: 800
   shadowDimmer: 1
   volumetricShadowDimmer: 1
   shadowFadeDistance: 10000
@@ -4395,22 +4395,22 @@ PrefabInstance:
     - target: {fileID: 4114951508786489613, guid: 176b833b49d865c419f763041fbff08d,
         type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: Close Fog Effect
       objectReference: {fileID: 0}
     - target: {fileID: 296852212915233742, guid: 176b833b49d865c419f763041fbff08d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.448
+      value: 5.78
       objectReference: {fileID: 0}
     - target: {fileID: 296852212915233742, guid: 176b833b49d865c419f763041fbff08d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8522205
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 296852212915233742, guid: 176b833b49d865c419f763041fbff08d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.001648
+      value: 8.64
       objectReference: {fileID: 0}
     - target: {fileID: 296852212915233742, guid: 176b833b49d865c419f763041fbff08d,
         type: 3}
@@ -4452,6 +4452,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285071479980411621, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808629633525578670, guid: 176b833b49d865c419f763041fbff08d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3251b30d5b086f41937f9ae5206ab75, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176b833b49d865c419f763041fbff08d, type: 3}
 --- !u!1001 &1519814131

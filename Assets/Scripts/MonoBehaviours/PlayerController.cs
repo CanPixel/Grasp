@@ -28,24 +28,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float m_GroundCheckDistance = 0.02f;
     [SerializeField] LayerMask m_GroundLayers = 0;
     [SerializeField] PhysicMaterial m_GroundedMaterial = null, m_AirborneMaterial = null;
-    [SerializeField] Vector3 m_ColliderCrouchSize = new Vector3(0.55f, 1.2f, 0.35f);
+    [SerializeField] float m_ColliderCrouchSize = 1.2f;
     [SerializeField] Vector3 m_ColliderCrouchCenter = new Vector3(0, 0.6f, 0);
 
     private Vector3 m_Move;
     private Vector3 m_VelocityBuffer;
     private float m_IdleTimer;
     private bool m_Grounded;
-    private BoxCollider m_PlayerCollider;
-    private Vector3 m_OriginalColliderSize;
+    private CapsuleCollider m_PlayerCollider;
+    private float m_OriginalColliderSize;
     private Vector3 m_OriginalColliderCenter;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
-        m_PlayerCollider = GetComponent<BoxCollider>();
+        m_PlayerCollider = GetComponent<CapsuleCollider>();
         m_OriginalColliderCenter = m_PlayerCollider.center;
-        m_OriginalColliderSize = m_PlayerCollider.size;
+        m_OriginalColliderSize = m_PlayerCollider.height;
 
         desiredIKWeight = 1;
     }
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
                 rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
             }
             m_PlayerCollider.center = !isCrouching ? m_OriginalColliderCenter : m_ColliderCrouchCenter;
-            m_PlayerCollider.size = !isCrouching ? m_OriginalColliderSize : m_ColliderCrouchSize;
+            m_PlayerCollider.height = !isCrouching ? m_OriginalColliderSize : m_ColliderCrouchSize;
             if (m_Move.y < 0)
             {
                 m_Move.x = Mathf.Min(m_Move.x, 0.2f);
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             if (isCrouching && m_Move.y >= 0)
             {
                 //Standing after crouch. Requires check if possible.
-                isCrouching = Physics.Raycast(transform.position, transform.up, m_OriginalColliderSize.y, m_GroundLayers);
+                isCrouching = Physics.Raycast(transform.position, transform.up, m_OriginalColliderSize, m_GroundLayers);
             }
         }
 

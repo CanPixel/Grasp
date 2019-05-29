@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour {
 
     [Range(0.1f, 8)]
     public float moveSpeed = 1;
+    public float jumpForce = 4;
+    public float maxJumpHeight = 4;
+    [Range(0, 90)]
+    public float maxSlopeAngle = 45;
     private float dir = 0, targetDir = 1;
 
     public float targetRange = 10;
@@ -23,7 +27,15 @@ public class Enemy : MonoBehaviour {
 
     private float scareDelay = 0;
 
-    public Behavior behavior;    
+    public Behavior behavior;
+
+    private Animator animator;
+    private bool grounded;
+    [SerializeField] float groundCheckDistance = 0.02f;
+    [SerializeField] LayerMask groundLayers = 0;
+    [SerializeField] PhysicMaterial groundedMaterial = null, airborneMaterial = null;
+    private bool hurtBeforeStateChange;
+    private CapsuleCollider enemyCollider;
 
     [System.Serializable]
     public enum Behavior {
@@ -31,7 +43,9 @@ public class Enemy : MonoBehaviour {
     }
     
     void Awake() {
-         StartAI();
+        animator = GetComponent<Animator>();
+        enemyCollider = GetComponent<CapsuleCollider>();
+        StartAI();
     }
 
     protected void StartAI() {
@@ -98,6 +112,10 @@ public class Enemy : MonoBehaviour {
     }
 
     public void Scare(Vector3 origin) {
+        if (!hurtBeforeStateChange) {
+            animator.SetTrigger("Hurt");
+            hurtBeforeStateChange = true;
+        }
         if(scareDelay > 0) return;
         scareDelay = 2;
         float posX = transform.position.x;  
@@ -110,16 +128,85 @@ public class Enemy : MonoBehaviour {
             targetDir = Mathf.Lerp(targetDir, -1, Time.deltaTime * 2);
         }
         else targetDir = 1;
+
+        CheckGroundedState();
+    }
+
+    void Update()
+    {
+        Animate();
     }
 
     protected void MoveToTarget(GameObject target) {
         Vector3 dest = transform.position - target.transform.position;
         if(dest.x > 0) dir = -1 * targetDir;
         if(dest.x < 0) dir = 1 * targetDir;
-        if(Vector3.Distance(transform.position, target.transform.position) > nearDistance) move();
+        if(Vector3.Distance(transform.position, target.transform.position) > nearDistance) Move();
     }
 
-    private void move() {
-        rb.MovePosition(rb.position + new Vector3((moveSpeed / 10) * dir, 0, 0) / 10f);
+    private void Move() {
+        if (grounded)
+        {
+            rb.MovePosition(rb.position + new Vector3((moveSpeed / 10) * dir, 0, 0) / 10f);
+            //Check objects at foot level
+            if (Physics.Raycast(transform.position + Vector3.up * 0.05f, dir > 0 ? Vector3.right : Vector3.left, 1, groundLayers))
+            {
+                if (MustJump())
+                {
+                    //Jump
+                    rb.AddForce((Vector3.up + transform.forward.normalized / 4)* jumpForce, ForceMode.VelocityChange);
+                }
+            }
+        }
+    }
+
+    private bool MustJump()
+    {
+        //If an object is found at foot level, check if its highest surface is reachable with a jump.
+        //Do a raycast adjacent to the enemy
+        RaycastHit adjacentHit = new RaycastHit();
+
+        Debug.DrawRay(transform.position + new Vector3(dir > 0 ? 1 : -1, 100, 0), Vector3.down * 100);
+        if (Physics.Raycast(transform.position + new Vector3(transform.eulerAngles.y == 90 ? 1 : -1, 100, 0), Vector3.down * 100, out adjacentHit, 100, groundLayers))
+        {
+            //Determine if its angle is not scalable
+            Debug.Log(Vector3.Angle(adjacentHit.normal, transform.up));
+            if (Vector3.Angle(adjacentHit.normal, transform.up) < maxSlopeAngle)
+            {
+                return false;
+            }
+            //Return if a jump is not too high.
+            float height = adjacentHit.point.y - transform.position.y;
+            if (height < 4 && height > 0.01f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void CheckGroundedState()
+    {
+        RaycastHit ground = new RaycastHit();
+
+        grounded = animator.applyRootMotion = Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, out ground, groundCheckDistance, groundLayers);
+        enemyCollider.material = grounded ? groundedMaterial : airborneMaterial;
+    }
+
+    private void Animate()
+    {
+        if (Mathf.Abs(dir) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (dir > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(dir));
+
+        animator.SetBool("Grounded", grounded);
+        animator.SetFloat("Speed", Mathf.Abs(dir));
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0.9f, 0.11f, 0.1f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up, nearDistance);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up, targetRange);
+        Gizmos.color = new Color(1f, 0.21f, 0.2f, 0.8f);
+        Gizmos.DrawRay(transform.position, Vector3.up * maxJumpHeight);
     }
 }

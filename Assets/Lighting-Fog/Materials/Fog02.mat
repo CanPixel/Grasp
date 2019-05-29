@@ -8,15 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fog02
-  m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _ALBEDOCONTRIBUTION _AXF_BRDF_TYPE_SVBRDF _COLORMAP _NORMALMAP_TANGENT_SPACE
-    _NORMALMAP_TANGENT_SPACE0 _NORMALMAP_TANGENT_SPACE1 _NORMALMAP_TANGENT_SPACE2
-    _NORMALMAP_TANGENT_SPACE3
+  m_Shader: {fileID: 4800000, guid: c4edd00ff2db5b24391a4fcb1762e459, type: 3}
+  m_ShaderKeywords: _ALBEDOCONTRIBUTION _AXF_BRDF_TYPE_SVBRDF _BLENDMODE_ALPHA _COLORMAP
+    _ENABLE_FOG_ON_TRANSPARENT _NORMALMAP_TANGENT_SPACE _NORMALMAP_TANGENT_SPACE0
+    _NORMALMAP_TANGENT_SPACE1 _NORMALMAP_TANGENT_SPACE2 _NORMALMAP_TANGENT_SPACE3
+    _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses:
   - DistortionVectors
   - DBufferMesh_AOS
@@ -25,9 +27,6 @@ Material:
   - DBufferMesh_MAO
   - DBufferMesh_MAOS
   - DBufferMesh_MS
-  - TransparentDepthPrepass
-  - TransparentDepthPostpass
-  - TransparentBackface
   - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
@@ -189,7 +188,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a89c987ca9a0b20488bdb384890d2460, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
@@ -449,7 +448,7 @@ Material:
     - _DoubleSidedNormalMode: 1
     - _Drag: 1
     - _DrawOrder: 0
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EmissionEnabled: 0
     - _EmissiveColorMode: 1
     - _EnableBlendModePreserveSpecularLighting: 1
@@ -614,7 +613,7 @@ Material:
     - _SubsurfaceMask2: 1
     - _SubsurfaceMask3: 1
     - _SupportDecals: 1
-    - _SurfaceType: 0
+    - _SurfaceType: 1
     - _TessellationBackFaceCullEpsilon: -0.25
     - _TessellationFactor: 4
     - _TessellationFactorMaxDistance: 50
@@ -660,7 +659,7 @@ Material:
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor0: {r: 1, g: 1, b: 1, a: 1}
@@ -674,7 +673,7 @@ Material:
     - _CarPaint2_CTCoeffs: {r: 1, g: 1, b: 1, a: 1}
     - _CarPaint2_CTF0s: {r: 1, g: 1, b: 1, a: 1}
     - _CarPaint2_CTSpreads: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
