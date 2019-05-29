@@ -23,7 +23,13 @@ public class Enemy : MonoBehaviour {
 
     private float scareDelay = 0;
 
-    public Behavior behavior;    
+    public Behavior behavior;
+
+    private Animator animator;
+    private bool grounded;
+    [SerializeField] float groundCheckDistance = 0.02f;
+    [SerializeField] LayerMask groundLayers = 0;
+    private bool hurtBeforeStateChange;
 
     [System.Serializable]
     public enum Behavior {
@@ -31,7 +37,8 @@ public class Enemy : MonoBehaviour {
     }
     
     void Awake() {
-         StartAI();
+        animator = GetComponent<Animator>();
+        StartAI();
     }
 
     protected void StartAI() {
@@ -98,6 +105,10 @@ public class Enemy : MonoBehaviour {
     }
 
     public void Scare(Vector3 origin) {
+        if (!hurtBeforeStateChange) {
+            animator.SetTrigger("Hurt");
+            hurtBeforeStateChange = true;
+        }
         if(scareDelay > 0) return;
         scareDelay = 2;
         float posX = transform.position.x;  
@@ -110,6 +121,13 @@ public class Enemy : MonoBehaviour {
             targetDir = Mathf.Lerp(targetDir, -1, Time.deltaTime * 2);
         }
         else targetDir = 1;
+
+        CheckGroundedState();
+    }
+
+    void Update()
+    {
+        Animate();
     }
 
     protected void MoveToTarget(GameObject target) {
@@ -120,6 +138,22 @@ public class Enemy : MonoBehaviour {
     }
 
     private void move() {
-        rb.MovePosition(rb.position + new Vector3((moveSpeed / 10) * dir, 0, 0) / 10f);
+        if (grounded)
+            rb.MovePosition(rb.position + new Vector3((moveSpeed / 10) * dir, 0, 0) / 10f);
+    }
+
+    private void CheckGroundedState()
+    {
+        RaycastHit ground = new RaycastHit();
+
+        grounded = Physics.Raycast(transform.position + Vector3.up * 0.01f, Vector3.down, out ground, groundCheckDistance, groundLayers);
+    }
+
+    private void Animate()
+    {
+        if (Mathf.Abs(dir) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (dir > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(dir));
+
+        animator.SetBool("Grounded", grounded);
+        animator.SetFloat("Speed", Mathf.Abs(targetDir));
     }
 }
