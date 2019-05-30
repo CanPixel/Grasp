@@ -35,5 +35,6 @@ public class Flashlight : MonoBehaviour {
     public void SwitchLight(bool i) {
         lightOn = i;
         lightPoint.enabled = i;
+        SoundManager.PlaySoundAt("Flashlight", transform.position, SoundManager.PLAYER_VOLUME, 1.2f);
     }
 }
