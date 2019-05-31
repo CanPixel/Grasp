@@ -32,8 +32,11 @@ public class Enemy : MonoBehaviour {
     [SerializeField] float groundCheckDistance = 0.02f;
     [SerializeField] LayerMask groundLayers = 0;
     [SerializeField] PhysicMaterial groundedMaterial = null, airborneMaterial = null;
+    [SerializeField] float grabRange = 0.5f;
     private bool hurtBeforeStateChange;
     private CapsuleCollider enemyCollider;
+
+    public Transform rightHand, leftHand;
 
     [System.Serializable]
     public enum Behavior {
@@ -120,7 +123,7 @@ public class Enemy : MonoBehaviour {
 
     public void Scare(Vector3 origin) {
         if (!hurtBeforeStateChange) {
-            if(animator != null) animator.SetTrigger("Hurt");
+            if(animator != null && target && !target.GetComponent<PlayerController>().dead) animator.SetTrigger("Hurt");
             hurtBeforeStateChange = true;
         }
         if(scareDelay > 0) return;
@@ -221,12 +224,39 @@ public class Enemy : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position + Vector3.up, targetRange);
         Gizmos.color = new Color(1f, 0.21f, 0.2f, 0.8f);
         Gizmos.DrawRay(transform.position, Vector3.up * maxJumpHeight);
+        Gizmos.color = Color.blue;
+        if (rightHand)
+        {
+            Gizmos.DrawWireSphere(rightHand.position, grabRange);
+        }
+        if (leftHand)
+        {
+            Gizmos.DrawWireSphere(leftHand.position, grabRange);
+        }
     }
 
     //Animator Event function
     public void CheckAttackHit(AnimationInitializer anim)
     {
-        //We gaan nu ff niet hitbox checken maar alleen animations voor nu
+        //Right hand
+        Collider[] hits = Physics.OverlapSphere(rightHand.position, grabRange, 1 << LayerMask.NameToLayer("Player"));
+        if (hits.Length > 0 && hits[0].GetComponent<PlayerController>())
+        {
+            AttackHit(anim);
+            return;
+        }
+        //Left hand
+        hits = Physics.OverlapSphere(leftHand.position, grabRange, 1 << LayerMask.NameToLayer("Player"));
+        if (hits.Length > 0 && hits[0].GetComponent<PlayerController>())
+        {
+            AttackHit(anim);
+            return;
+        }
+
+    }
+
+    private void AttackHit(AnimationInitializer anim)
+    {
         if (anim) anim.Activate(transform, target.transform);
         else throw new MissingComponentException("No AnimationInitializer set for \"" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\".");
     }

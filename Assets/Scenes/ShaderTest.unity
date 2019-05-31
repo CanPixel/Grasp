@@ -972,21 +972,6 @@ PrefabInstance:
       propertyPath: playerLightPoint
       value: 
       objectReference: {fileID: 1910757481}
-    - target: {fileID: 16825675102314446, guid: db252bb7bf916c2459c1ab4029085cd8,
-        type: 3}
-      propertyPath: nearDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 16825675102314446, guid: db252bb7bf916c2459c1ab4029085cd8,
-        type: 3}
-      propertyPath: jumpForce
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 16825675102314446, guid: db252bb7bf916c2459c1ab4029085cd8,
-        type: 3}
-      propertyPath: targetRange
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db252bb7bf916c2459c1ab4029085cd8, type: 3}
 --- !u!4 &432049807 stripped

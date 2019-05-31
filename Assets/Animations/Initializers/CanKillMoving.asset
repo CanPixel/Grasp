@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipName: Can Kills Moving
   transform:
-    offsetPosition: {x: 0, y: 0, z: 2.366}
+    offsetPosition: {x: 0, y: 0, z: 1.866}
     offsetEulerAngles: {x: 0, y: 0, z: 0}
     offsetScale: {x: 0, y: 0, z: 0}

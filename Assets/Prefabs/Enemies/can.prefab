@@ -161,9 +161,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   moveSpeed: 0
-  jumpForce: 4
+  jumpForce: 2
   maxJumpHeight: 4
-  targetRange: 10
+  maxSlopeAngle: 45
+  targetRange: 12
   nearDistance: 2
   player: {fileID: 0}
   playerLightPoint: {fileID: 0}
@@ -174,6 +175,9 @@ MonoBehaviour:
     m_Bits: 1
   groundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
   airborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
+  grabRange: 0.5
+  rightHand: {fileID: 7608722307513342778}
+  leftHand: {fileID: 7608722307513342780}
 --- !u!1 &7608722307513304838
 GameObject:
   m_ObjectHideFlags: 0

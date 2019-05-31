@@ -27,9 +27,11 @@ public class AnimationInitializer : ScriptableObject
         target.localScale += transform.offsetScale;
 
         //Animating
-        user.GetComponent<Animator>().ResetTrigger("Attack");
+        Animator ua = user.GetComponent<Animator>();
+        ua.ResetTrigger("Attack");
+        ua.ResetTrigger("Hurt");
+        ua.Play(clipName);
         target.GetComponent<Animator>().Play(clipName);
-        user.GetComponent<Animator>().Play(clipName);
     }
 }
 
