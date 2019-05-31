@@ -40,6 +40,8 @@ public class Enemy : MonoBehaviour {
         MOTH, VAMPIRE
     }
     
+    public float remainingDistance { get; set; }
+
     void Awake() {
         animator = GetComponent<Animator>();
         enemyCollider = GetComponent<CapsuleCollider>();
@@ -69,7 +71,8 @@ public class Enemy : MonoBehaviour {
     }
 
     protected BNode.NodeState Walk() {
-        if(target != null) MoveToTarget(target);
+        if (target != null) MoveToTarget(target);
+        else dir = Mathf.MoveTowards(dir, 0, Time.deltaTime * 5);
         return BNode.NodeState.SUCCESS;
     }
 
@@ -97,6 +100,21 @@ public class Enemy : MonoBehaviour {
     }
 
     protected BNode.NodeState Attack() {
+        if (target && target.GetComponent<PlayerController>().dead) return BNode.NodeState.SUCCESS;
+        if (scareDelay > 0) return BNode.NodeState.FAIL;
+        float playerDist = Vector3.Distance(transform.position, player.transform.position);
+        switch(behavior)
+        {
+            case Behavior.MOTH:
+                break;
+            case Behavior.VAMPIRE:
+                if (playerDist < nearDistance * 1.5f)
+                {
+                    if (animator != null) animator.SetTrigger("Attack");
+                    hurtBeforeStateChange = false;
+                }
+                break;
+        }
         return BNode.NodeState.SUCCESS;
     }
 
@@ -130,7 +148,12 @@ public class Enemy : MonoBehaviour {
         Vector3 dest = transform.position - target.transform.position;
         if(dest.x > 0) dir = -1 * targetDir;
         if(dest.x < 0) dir = 1 * targetDir;
-        if(Vector3.Distance(transform.position, target.transform.position) > nearDistance) Move();
+
+        remainingDistance = Mathf.Max(0, Vector3.Distance(transform.position, target.transform.position) - nearDistance);
+
+        if (remainingDistance > 0) Move();
+
+        dir *= Mathf.Min(1, remainingDistance);
     }
 
     private void Move() {
@@ -143,7 +166,7 @@ public class Enemy : MonoBehaviour {
                 if (MustJump())
                 {
                     //Jump
-                    rb.AddForce((Vector3.up + transform.forward.normalized / 4)* jumpForce, ForceMode.VelocityChange);
+                    rb.AddForce((Vector3.up + transform.forward.normalized / Mathf.Min(Mathf.Epsilon, rb.velocity.x))* jumpForce, ForceMode.VelocityChange);
                 }
             }
         }
@@ -155,12 +178,13 @@ public class Enemy : MonoBehaviour {
         //Do a raycast adjacent to the enemy
         RaycastHit adjacentHit = new RaycastHit();
 
-        Debug.DrawRay(transform.position + new Vector3(dir > 0 ? 1 : -1, 100, 0), Vector3.down * 100);
-        if (Physics.Raycast(transform.position + new Vector3(transform.eulerAngles.y == 90 ? 1 : -1, 100, 0), Vector3.down * 100, out adjacentHit, 100, groundLayers))
+        Debug.DrawRay(transform.position + new Vector3(dir > 0 ? 1 : -1, 6, 0), Vector3.down * 6);
+        if (Physics.Raycast(transform.position + new Vector3(transform.eulerAngles.y == 90 ? 1 : -1, 6, 0), Vector3.down * 6, out adjacentHit, 6, groundLayers))
         {
             //Determine if its angle is not scalable
             Debug.Log(Vector3.Angle(adjacentHit.normal, transform.up));
-            if (Vector3.Angle(adjacentHit.normal, transform.up) < maxSlopeAngle)
+            float slopeAngle = Vector3.Angle(adjacentHit.normal, transform.up);
+            if (slopeAngle < maxSlopeAngle && slopeAngle > 0)
             {
                 return false;
             }
@@ -197,5 +221,12 @@ public class Enemy : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position + Vector3.up, targetRange);
         Gizmos.color = new Color(1f, 0.21f, 0.2f, 0.8f);
         Gizmos.DrawRay(transform.position, Vector3.up * maxJumpHeight);
+    }
+
+    //Animator Event function
+    public void CheckAttackHit(AnimationInitializer anim)
+    {
+        //We gaan nu ff niet hitbox checken maar alleen animations voor nu
+        anim.Activate(transform, target.transform);
     }
 }

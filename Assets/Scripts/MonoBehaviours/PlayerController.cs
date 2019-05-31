@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 #endif
         Rigidbody rigidbody { get; private set; }
     public Transform overrideIKTarget { get; set; }
+    public bool dead { get; set; }
 
     [SerializeField] float m_JumpHeightMultiplier = 1.8f;
     [SerializeField] float m_GroundCheckDistance = 0.02f;
@@ -30,6 +31,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PhysicMaterial m_GroundedMaterial = null, m_AirborneMaterial = null;
     [SerializeField] float m_ColliderCrouchSize = 1.2f;
     [SerializeField] Vector3 m_ColliderCrouchCenter = new Vector3(0, 0.6f, 0);
+
+    [Space]
+    public bool locked;
 
     private Vector3 m_Move;
     private Vector3 m_VelocityBuffer;
@@ -65,12 +69,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (dead) enabled = false;
         //Input
         m_Move.x = Input.GetAxis("Horizontal");
 
         if (Input.GetKey(KeyCode.LeftShift)) m_Move.x *= 0.2f;
         m_Move.y = Input.GetAxisRaw("Vertical");
         if(Input.GetKey(KeyCode.Space)) m_Move.y = 1;
+
+        if (locked) m_Move = Vector3.zero;
 
         //Grounded Controls
         if (m_Grounded) {
