@@ -227,6 +227,7 @@ public class Enemy : MonoBehaviour {
     public void CheckAttackHit(AnimationInitializer anim)
     {
         //We gaan nu ff niet hitbox checken maar alleen animations voor nu
-        anim.Activate(transform, target.transform);
+        if (anim) anim.Activate(transform, target.transform);
+        else throw new MissingComponentException("No AnimationInitializer set for \"" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\".");
     }
 }
