@@ -6,6 +6,9 @@ public class SoundManager : MonoBehaviour {
     public static bool MUTE = false;
 
     public AudioReverbPreset baseReverbPreset;
+    public AudioClip heartBeat;
+    [Range(0, 100)]
+    public int BPM = 80;
 
     [Header("Volume Levels")]
     [Range(0f, 1f)]
@@ -31,6 +34,22 @@ public class SoundManager : MonoBehaviour {
         instance = this;
         names = new string[sounds.Length];
 		for(int i = 0; i < sounds.Length; i++) names[i] = sounds[i].name;
+
+        StartCoroutine(HeartBeat());
+    }
+
+    protected IEnumerator HeartBeat() {
+        while(true) {
+            float delay = 60f / BPM;
+            float interval = 0.35f;
+            PlaySound(heartBeat, 0.3f);
+            BeatScale.Beat();
+            yield return new WaitForSeconds(interval);
+            PlaySound(heartBeat, 0.35f);
+            BeatScale.Beat();
+            delay -= interval;
+            yield return new WaitForSeconds(delay);
+        }
     }
 
     void LateUpdate() {
@@ -38,6 +57,8 @@ public class SoundManager : MonoBehaviour {
 
         if(ambientTimer > 3 && Random.Range(0, 10) < 5 && !ambientPlaying) PlayAmbient();
         if(ambientPlaying && lastAmbient == null) ResetAmbience();
+
+        if(PlayerInput.UsingAlternativeControls()) BPM = PlayerInput.GetControllerValues().heartRate;
     }
 
     private void ResetAmbience() {
@@ -52,7 +73,7 @@ public class SoundManager : MonoBehaviour {
 
     public static AudioSource PlaySound(AudioClip clip, float volume = 1, float pitch = 1) {
          if(MUTE || instance == null) return null;
-		var temp = new GameObject("2D TempAudio");
+		var temp = new GameObject("2D TempAudio: " + clip.name);
 		temp.transform.position = Camera.main.transform.position;
 		var source = temp.AddComponent<AudioSource>();
         source.clip = clip;

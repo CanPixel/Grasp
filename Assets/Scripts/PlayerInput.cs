@@ -105,7 +105,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     void LateUpdate() {
-        if(!controllerValues.updated) return;
+        if(!controllerValues.updated || !alternativeControls) return;
         HeartRateBPM.text = "<color=#" + GetHeartRateColor(controllerValues.heartRate) + ">" + controllerValues.heartRate.ToString() + "</color> BPM";
         overlay.enabled = !PlayerInput.IsDebugging();
         if(!PlayerInput.IsDebugging()) HeartRateBPM.enabled = HasConnection();
@@ -113,6 +113,7 @@ public class PlayerInput : MonoBehaviour {
 
     protected string GetHeartRateColor(int rate) {
         string endColor = "fff";
+        if(rate >= 100) return ColorUtility.ToHtmlStringRGB(heartRange.colorKeys[heartRange.colorKeys.Length - 1].color);
         for(int i = 0; i < heartRange.colorKeys.Length; i++) {
             if(heartRange.colorKeys[i].time >= rate / 100f) {
                 endColor = ColorUtility.ToHtmlStringRGB(heartRange.colorKeys[i].color);
@@ -142,6 +143,9 @@ public class PlayerInput : MonoBehaviour {
                 alternativeControls = true;
             } catch(System.IO.IOException) {
                 alternativeControls = false;
+                ConnectionText.SetActive(false);
+                HeartRateBPM.enabled = false;
+                overlay.enabled = false;
             }
         }
     }
@@ -171,6 +175,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     void OnGUI() {
+        if(!alternativeControls) return;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, Mathf.Lerp(overlay.color.a, HasConnection() ? 0 : overlayBaseAlpha, Time.deltaTime * 2));
         if(HasConnection()) ConnectionScale = Mathf.Lerp(ConnectionScale, 0, Time.deltaTime * 3);
         else ConnectionScale = Mathf.Lerp(ConnectionScale, 1, Time.deltaTime * 3);

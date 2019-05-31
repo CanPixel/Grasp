@@ -8123,6 +8123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseReverbPreset: 0
+  heartBeat: {fileID: 8300000, guid: 0c743377b245c6741a42cb63d2c787a8, type: 3}
+  BPM: 80
   ambienceVolume: 0.37
   playerVolume: 0.8
   ambientSounds:
@@ -12813,6 +12815,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54597ede5a57599489395f3fe1117d06, type: 3}
+--- !u!1001 &2736743251694621710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224220170406089357, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_Name
+      value: HeartRock
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406089357, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.32679707
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.28541493
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5926646
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.67859465
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 51.429
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224220170406579885, guid: 2121aca968e0c2f4e978fd03ddea3677,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 82.26601
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2121aca968e0c2f4e978fd03ddea3677, type: 3}
 --- !u!1001 &2951474486944035162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12888,6 +12964,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 88759543787222776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9122473767327891536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 224220170406089357, guid: 2121aca968e0c2f4e978fd03ddea3677,
+    type: 3}
+  m_PrefabInstance: {fileID: 2736743251694621710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9122473767327891537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122473767327891536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0607e0c4231418848b386b92f2e5a938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 1.1
 --- !u!1001 &9122473767467946918
 PrefabInstance:
   m_ObjectHideFlags: 0
