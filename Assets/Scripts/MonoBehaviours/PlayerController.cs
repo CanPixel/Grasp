@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private float m_OriginalColliderSize;
     private Vector3 m_OriginalColliderCenter;
 
+    private float jumpDelay = 0;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -63,8 +65,10 @@ public class PlayerController : MonoBehaviour
         if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
     }
 
-    private void Update()
+    private void Update() 
     {
+        if(jumpDelay > 0) jumpDelay -= Time.deltaTime;
+
         //Input
         m_Move.x = Input.GetAxis("Horizontal");
 
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
                 animator.applyRootMotion = false;
                 m_Grounded = false;
                 rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
+                if(jumpDelay <= 0) JumpSound();
             }
             m_PlayerCollider.center = !isCrouching ? m_OriginalColliderCenter : m_ColliderCrouchCenter;
             m_PlayerCollider.height = !isCrouching ? m_OriginalColliderSize : m_ColliderCrouchSize;
@@ -99,6 +104,11 @@ public class PlayerController : MonoBehaviour
         Animate();
 
         IKAim();
+    }
+
+    private void JumpSound() {
+        jumpDelay = 0.5f;
+        SoundManager.PlaySoundAt("Jump", transform.position, 0.05f, Random.Range(0.9f, 1f));
     }
 
     private void Animate()
@@ -130,10 +140,7 @@ public class PlayerController : MonoBehaviour
         ikLookWeight = Mathf.MoveTowards(ikLookWeight, animator.GetCurrentAnimatorStateInfo(0).IsTag("Active") ? 1 : 0, Time.deltaTime * 5);
         desiredIKWeightLeftHand = Mathf.Lerp(desiredIKWeightLeftHand, isGrabbing ? 1 : 0, Time.deltaTime * ikAdaptSpeed * 2);
 
-        if (!m_Grounded)
-        {
-            animator.SetFloat("Impact", Mathf.Abs(rigidbody.velocity.y));
-        }
+        if (!m_Grounded) animator.SetFloat("Impact", Mathf.Abs(rigidbody.velocity.y));
     }
 
     private void CheckGrounded()
@@ -146,13 +153,15 @@ public class PlayerController : MonoBehaviour
         m_PlayerCollider.material = m_Grounded ? m_GroundedMaterial : m_AirborneMaterial;
     }
 
-    private void IKAim()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+    private void IKAim() {
+        if(PlayerInput.UsingAlternativeControls()) desiredIKPosition = new Vector3(Camera.main.transform.position.x + -PlayerInput.GetControllerValues().xAim * 10, Camera.main.transform.position.y + PlayerInput.GetControllerValues().yAim * 10, -0.1f);
+        else {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
-        //Sets the desired IK Target to Mouse Position. Add a tiny z offset to prevent the hand from going through the body.
-        desiredIKPosition = new Vector3(ray.origin.x + ray.direction.x * 10, ray.origin.y + ray.direction.y * 10, -0.1f);
+            //Sets the desired IK Target to Mouse Position. Add a tiny z offset to prevent the hand from going through the body.
+            desiredIKPosition = new Vector3(ray.origin.x + ray.direction.x * 10, ray.origin.y + ray.direction.y * 10, -0.1f);
+        }
     }
 
     public Transform SetIKOverrideTarget(Transform target)

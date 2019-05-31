@@ -14,7 +14,7 @@ public class Flashlight : MonoBehaviour {
     }
 
     void Update() {
-        if(Input.GetMouseButtonDown(2)) SwitchLight(!lightOn);
+        if(Input.GetMouseButtonDown(2) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
         CastLight();
     }
 
@@ -32,8 +32,13 @@ public class Flashlight : MonoBehaviour {
         if(!rayHit || !lightOn) flashPoint.transform.position = new Vector3(0, -100, 0);
     }
 
-    public void SwitchLight(bool i) {
+    public void SwitchLight() {
+        SwitchLight(!lightOn);
+    }
+
+    protected void SwitchLight(bool i) {
         lightOn = i;
         lightPoint.enabled = i;
+        SoundManager.PlaySoundAt("Flashlight", transform.position, SoundManager.PLAYER_VOLUME, 1.2f);
     }
 }
