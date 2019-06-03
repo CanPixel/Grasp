@@ -31,7 +31,7 @@ public class Flashlight : MonoBehaviour {
             beamDelay += Time.deltaTime;
             if (beamDelay > holdTillBeam) ActivateBeam(true);
         }
-        else ActivateBeam(false);
+        if(Input.GetMouseButtonUp(2)) ActivateBeam(false);
 
         if (narrowBeam.activeSelf && castBeam) narrowBeam.transform.localScale = new Vector3(narrowBeam.transform.localScale.x, narrowBeam.transform.localScale.y, Mathf.Lerp(narrowBeam.transform.localScale.z, castingLength, Time.deltaTime * castingSpeed));
 
@@ -41,7 +41,10 @@ public class Flashlight : MonoBehaviour {
     private void ActivateBeam(bool i)
     {
         narrowBeam.SetActive(i);
-        lightPoint.enabled = !i;
+        if(narrowBeam.activeSelf) {
+            lightOn = false;
+            lightPoint.enabled = false;
+        }
         if (!i)
         {
             beamDelay = 0;
