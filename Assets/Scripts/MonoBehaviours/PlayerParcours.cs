@@ -40,6 +40,7 @@ public class PlayerParcours : MonoBehaviour
                     m_RopeRigidbody.velocity += m_Controller.rigidbody.velocity;
                     m_Controller.rigidbody.isKinematic = true;
                     m_Controller.isGrabbing = true;
+                    SoundManager.PlaySoundAt("Swing", transform.position, 0.5f, Random.Range(0.9f, 1f));
                 }
             }
             else
@@ -52,6 +53,7 @@ public class PlayerParcours : MonoBehaviour
                 m_RopeRigidbody = null;
                 m_Controller.isGrabbing = false;
                 transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
+                SoundManager.PlaySoundAt("Jump", transform.position, 0.05f, Random.Range(1f, 1.2f));
             }
         }
         if (m_Controller.isGrabbing)
