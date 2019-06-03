@@ -8,6 +8,8 @@ public class FadeOut : MonoBehaviour {
     public PlayerController pc;
 
     private bool fade = false;
+
+    public bool OnTrigger = true;
     
     void FixedUpdate() {
         if(fade) {
@@ -18,9 +20,14 @@ public class FadeOut : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider col) {
+        if(!OnTrigger) return;
         if(col.tag == "Player") {
             fade = true;
             pc.lockControls = true;
         }
+    }
+
+    public void Fade() {
+        fade = true;
     }
 }

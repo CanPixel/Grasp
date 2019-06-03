@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
     public bool lockControls = false;
 
+    private bool canJump = true;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -81,8 +83,8 @@ public class PlayerController : MonoBehaviour
             m_Move.x = Input.GetAxis("Horizontal");
 
             if (Input.GetKey(KeyCode.LeftShift)) m_Move.x *= 0.2f;
-            m_Move.y = Input.GetAxisRaw("Vertical");
-            if(Input.GetKey(KeyCode.Space)) m_Move.y = 1;
+            if(canJump) m_Move.y = Input.GetAxisRaw("Vertical");
+            if(canJump && Input.GetKey(KeyCode.Space)) m_Move.y = 1;
         } else {
             m_Move.y = 0;
             m_Move = Vector3.Lerp(m_Move, Vector3.zero, Time.deltaTime * 1);
@@ -117,8 +119,11 @@ public class PlayerController : MonoBehaviour
         }
 
         Animate();
-
         IKAim();
+    }
+
+    public void SetJump(bool i) {
+        canJump = i;
     }
 
     private void JumpSound() {
