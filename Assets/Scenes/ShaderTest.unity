@@ -1102,7 +1102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c4443d3874a30034ebfd99101857fe43, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c4443d3874a30034ebfd99101857fe43, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1168,7 +1168,7 @@ PrefabInstance:
     - target: {fileID: 7608722307513342756, guid: db252bb7bf916c2459c1ab4029085cd8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7608722307513342756, guid: db252bb7bf916c2459c1ab4029085cd8,
         type: 3}
@@ -1194,7 +1194,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerLightPoint
       value: 
-      objectReference: {fileID: 1910757481}
+      objectReference: {fileID: 1570744360}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db252bb7bf916c2459c1ab4029085cd8, type: 3}
 --- !u!4 &432049807 stripped
@@ -1687,7 +1687,7 @@ Transform:
   m_LocalScale: {x: 592.3368, y: 82.0344, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &612641277 stripped
 Transform:
@@ -2439,7 +2439,7 @@ Transform:
   m_LocalScale: {x: 592.3368, y: 82.0344, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004477648
 GameObject:
@@ -2530,7 +2530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004477648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e79134d7c7577243bfaa4163ac38f37, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e59d0b93ef1df448b6bddf5d2330a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   alternativeControls: 0
@@ -2575,18 +2575,7 @@ MonoBehaviour:
     click: 0
     onClick:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: SwitchLight
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     updated: 0
@@ -3027,6 +3016,10 @@ PrefabInstance:
       propertyPath: flashPoint
       value: 
       objectReference: {fileID: 1570744360}
+    - target: {fileID: 960730583, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
+      propertyPath: lightPoint
+      value: 
+      objectReference: {fileID: 1910757484}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
 --- !u!1 &1232485322
@@ -3664,7 +3657,7 @@ PrefabInstance:
     - target: {fileID: 8374870135624841109, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8374870135624841109, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}
@@ -4353,9 +4346,9 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848743707}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1910757481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5078583258365858618, guid: 377e5faa51faeb14ba20e2558d6614dd,
+--- !u!108 &1910757484 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2761696216241975378, guid: 377e5faa51faeb14ba20e2558d6614dd,
     type: 3}
   m_PrefabInstance: {fileID: 1178655752}
   m_PrefabAsset: {fileID: 0}
