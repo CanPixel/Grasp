@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 224220170406579885}
   - component: {fileID: 224220170409447053}
   - component: {fileID: 224220170408348749}
+  - component: {fileID: 5635406054142169742}
   m_Layer: 0
   m_Name: HeartRock
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5635406054142169742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224220170406089357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22602448641965347bf18527e14c131f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 1.2
