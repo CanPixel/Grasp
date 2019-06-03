@@ -132,7 +132,7 @@ ModelImporter:
       - time: 0.48311457
         functionName: CheckAttackHit
         data: 
-        objectReferenceParameter: {fileID: 11400000, guid: 3db22ab50baa6db4aa77d0b6c2799dc0,
+        objectReferenceParameter: {fileID: 11400000, guid: c3a78c6a2f021ac4c926d241d4d1a25a,
           type: 2}
         floatParameter: 0
         intParameter: 0
