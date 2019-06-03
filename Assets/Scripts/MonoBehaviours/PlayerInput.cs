@@ -92,10 +92,8 @@ public class PlayerInput : MonoBehaviour {
     void Awake() {
         overlayBaseAlpha = overlay.color.a;
         self = this;
-        if(alternativeControls) {
-            Cursor.visible = false;
-            StartCoroutine(Connect());
-        }
+        if(alternativeControls) StartCoroutine(Connect());
+        else DisableUI();
     }
 
     void Update() {
@@ -141,13 +139,20 @@ public class PlayerInput : MonoBehaviour {
                 stream.Open();
                 stream.ReadTimeout = 1;
                 alternativeControls = true;
+                Cursor.visible = false;
             } catch(System.IO.IOException) {
+                Debug.LogWarning("Couldn't find heartbeat + joystick configuration; Disabling alt controls.");
                 alternativeControls = false;
-                ConnectionText.SetActive(false);
-                HeartRateBPM.enabled = false;
-                overlay.enabled = false;
+                DisableUI();
+                yield break;
             }
         }
+    }
+
+    private void DisableUI() {
+        ConnectionText.SetActive(false);
+        HeartRateBPM.enabled = false;
+        overlay.enabled = false;
     }
 
     public static string ReadSensors(int timeout = 1) {
