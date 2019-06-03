@@ -169,7 +169,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerLightPoint: {fileID: 0}
   behavior: 1
-  groundCheckDistance: 0.02
+  groundCheckDistance: 0.1
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
