@@ -26,8 +26,6 @@ public class Flashlight : MonoBehaviour {
     void Update() {
         if(Input.GetMouseButtonDown(2) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
 
-        Debug.Log(Input.GetMouseButtonDown(2) + " | " + Input.GetMouseButton(2));
-
         if (Input.GetMouseButton(2))
         {
             beamDelay += Time.deltaTime;
