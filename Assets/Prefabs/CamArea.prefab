@@ -42,11 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2463414179970739195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d329e35345b34af43ab047e29641ca2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 77a3040755a7445479a34b08ea3db889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 15, y: 0, z: 0}
-  offset: {x: -1, y: 3.4, z: -9}
+  rotation: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 0}
   speed: 2
 --- !u!65 &2463414179970739174
 BoxCollider:
