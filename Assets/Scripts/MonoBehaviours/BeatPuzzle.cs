@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BeatPuzzle : MonoBehaviour {
-    public GameObject door;
+    public GameObject door, button;
 
     private bool puzzle = false, finished = false;
 
@@ -23,6 +23,8 @@ public class BeatPuzzle : MonoBehaviour {
 
     public int HitsUntilWin = 3;
 
+    private float pushDelay = 0;
+
     void Start() {
         double startTime = currentDSP = AudioSettings.dspTime;
 		sampleRate = AudioSettings.outputSampleRate;
@@ -37,6 +39,10 @@ public class BeatPuzzle : MonoBehaviour {
     }
 
     void Update() {
+        if(pushDelay > 0) pushDelay += Time.deltaTime;
+        button.transform.localPosition = new Vector3(-0.5f + Mathf.Sin(pushDelay * 2) / 10, button.transform.localPosition.y, button.transform.localPosition.z);
+        if(pushDelay > 1.5f) pushDelay = 0;
+
         if(finished) {
             Vector3 tar = door.transform.localPosition;
             tar.y = -1;
@@ -52,6 +58,7 @@ public class BeatPuzzle : MonoBehaviour {
         double accuracy = Mathf.Abs((float)(lastPulse - lastClick));
         if(accuracy < sensitivity) {
             hits++;
+            pushDelay = 0.1f;
             SoundManager.PlaySoundAt("Clap", transform.position);
         }
         else {
