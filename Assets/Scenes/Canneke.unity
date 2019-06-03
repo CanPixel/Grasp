@@ -1850,9 +1850,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 381911331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afa7449fb5941747a72ee427b1dbd2c, type: 3}
+  m_Script: {fileID: 11500000, guid: f7f73e56f95af29419c41780a6bf3a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basePitch: 1
 --- !u!65 &381911334
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4307,9 +4308,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1205534222}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4afa7449fb5941747a72ee427b1dbd2c, type: 3}
+  m_Script: {fileID: 11500000, guid: f7f73e56f95af29419c41780a6bf3a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basePitch: 1.05
 --- !u!65 &1205534225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5770,12 +5772,12 @@ MonoBehaviour:
   ambienceVolume: 0.6
   playerVolume: 0.8
   ambientSounds:
-  - {fileID: 8300000, guid: 64967a86b2369884c81e2c23a6ec6cc4, type: 3}
-  - {fileID: 8300000, guid: 0f11874156e26ff4cb6c1ad2a9c87827, type: 3}
   - {fileID: 8300000, guid: 51d5bb4070f0f9b439d94dd30c0ce14b, type: 3}
+  - {fileID: 8300000, guid: 0f11874156e26ff4cb6c1ad2a9c87827, type: 3}
   sounds:
   - {fileID: 8300000, guid: 96e12b9afc420a84bbd009139b1dbf69, type: 3}
   - {fileID: 8300000, guid: 3a0ecb65a12f263408c91911d10d8614, type: 3}
+  - {fileID: 8300000, guid: 11c7ed661ddc0c54ebfeed5e31f85c94, type: 3}
 --- !u!82 &1594540113
 AudioSource:
   m_ObjectHideFlags: 0
