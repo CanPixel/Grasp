@@ -29,6 +29,8 @@ public class SoundManager : MonoBehaviour {
     private bool ambientPlaying = false;
     private AudioSource lastAmbient;
 
+    private bool first = true;
+
     void Awake() {
         PLAYER_VOLUME = playerVolume;
         instance = this;
@@ -42,11 +44,12 @@ public class SoundManager : MonoBehaviour {
         while(true) {
             float delay = 60f / BPM;
             float interval = 0.35f;
-            PlaySound(heartBeat, 0.3f);
+            if(!first) PlaySound(heartBeat, 0.3f);
             BeatScale.Beat();
             yield return new WaitForSeconds(interval);
-            PlaySound(heartBeat, 0.35f);
+             if(!first) PlaySound(heartBeat, 0.35f);
             BeatScale.Beat();
+            first = false;
             delay -= interval;
             yield return new WaitForSeconds(delay);
         }
@@ -59,6 +62,7 @@ public class SoundManager : MonoBehaviour {
         if(ambientPlaying && lastAmbient == null) ResetAmbience();
 
         if(PlayerInput.UsingAlternativeControls()) BPM = PlayerInput.GetControllerValues().heartRate;
+        else BPM = 40;
     }
 
     private void ResetAmbience() {
