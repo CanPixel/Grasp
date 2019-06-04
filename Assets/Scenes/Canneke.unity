@@ -4336,7 +4336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e59d0b93ef1df448b6bddf5d2330a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alternativeControls: 1
+  alternativeControls: 0
   HeartRateBPM: {fileID: 1242335440}
   ConnectionText: {fileID: 420961835}
   overlay: {fileID: 1372419950}
@@ -4378,7 +4378,18 @@ MonoBehaviour:
     click: 0
     onClick:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1425382012}
+          m_MethodName: SwitchLight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
     updated: 0
@@ -5155,6 +5166,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2002855471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1425382012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 960730583, guid: 377e5faa51faeb14ba20e2558d6614dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1509252670}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ab439448becaa4eb274c852d834a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1437872490
 PrefabInstance:
   m_ObjectHideFlags: 0
