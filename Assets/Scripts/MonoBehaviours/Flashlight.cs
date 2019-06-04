@@ -26,33 +26,29 @@ public class Flashlight : MonoBehaviour {
     void Update() {
         if(Input.GetMouseButtonDown(2) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
 
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 0))
         {
             beamDelay += Time.deltaTime;
             if (beamDelay > holdTillBeam) ActivateBeam(true);
         }
-        if(Input.GetMouseButtonUp(2)) ActivateBeam(false);
+        if(Input.GetMouseButtonUp(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 1)) ActivateBeam(false);
 
         if (narrowBeam.activeSelf && castBeam) narrowBeam.transform.localScale = new Vector3(narrowBeam.transform.localScale.x, narrowBeam.transform.localScale.y, Mathf.Lerp(narrowBeam.transform.localScale.z, castingLength, Time.deltaTime * castingSpeed));
 
         CastLight();
     }
 
-    private void ActivateBeam(bool i)
-    {
+    private void ActivateBeam(bool i) {
         if(i && !narrowBeam.activeSelf) SoundManager.PlaySoundAt("BeamLight", transform.position, SoundManager.PLAYER_VOLUME, 1.2f);
         narrowBeam.SetActive(i);
         if(narrowBeam.activeSelf) {
             lightOn = false;
             lightPoint.enabled = false;
         }
-        if (!i)
-        {
+        if (!i) {
             beamDelay = 0;
             castBeam = false;
-        }
-        else if (!castBeam)
-        {
+        } else if (!castBeam) {
             narrowBeam.transform.localScale = new Vector3(1, 1, 0);
             castBeam = true;
         }

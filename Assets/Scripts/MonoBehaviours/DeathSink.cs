@@ -36,7 +36,11 @@ public class DeathSink : MonoBehaviour {
     }
 
     void OnTriggerEnter(Collider col) {
-        if(col.tag == "Player") inLake = true;
+        if(col.tag == "Player") {
+            inLake = true;
+            if(Random.Range(0, 2) == 0) SoundManager.PlaySoundAt("Splash1", col.transform.position);
+            else SoundManager.PlaySoundAt("Splash2", col.transform.position);
+        }
     }
 
     void OnTriggerExit(Collider col) {

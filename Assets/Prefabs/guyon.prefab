@@ -567,6 +567,7 @@ GameObject:
   - component: {fileID: 8374870135474963741}
   - component: {fileID: 8374870135474963744}
   - component: {fileID: 1755557685}
+  - component: {fileID: 1522656649432665595}
   - component: {fileID: 8735809629024907270}
   m_Layer: 10
   m_Name: guyon
@@ -653,8 +654,10 @@ MonoBehaviour:
     m_Bits: 1
   m_GroundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
   m_AirborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
-  m_ColliderCrouchSize: {x: 0.55, y: 1.2, z: 0.35}
+  m_ColliderCrouchSize: 1.2
   m_ColliderCrouchCenter: {x: 0, y: 0.6, z: 0}
+  locked: 0
+  lockControls: 0
 --- !u!114 &1755557685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,6 +676,20 @@ MonoBehaviour:
   m_GrabMask:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &1522656649432665595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374870135625067445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5177ebf1fbdd4da67a4a1c6ffb9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoints: []
+  current: {fileID: 0}
 --- !u!136 &8735809629024907270
 CapsuleCollider:
   m_ObjectHideFlags: 0
