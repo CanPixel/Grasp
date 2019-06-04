@@ -83,8 +83,7 @@ public class PlayerController : MonoBehaviour
             m_Move.x = Input.GetAxis("Horizontal");
 
             if (Input.GetKey(KeyCode.LeftShift)) m_Move.x *= 0.2f;
-            if(canJump) m_Move.y = Input.GetAxisRaw("Vertical");
-            if(canJump && Input.GetKey(KeyCode.Space)) m_Move.y = 1;
+            if (canJump) m_Move.y = Input.GetAxisRaw("Vertical");
         } else {
             m_Move.y = 0;
             m_Move = Vector3.Lerp(m_Move, Vector3.zero, Time.deltaTime * 1);
