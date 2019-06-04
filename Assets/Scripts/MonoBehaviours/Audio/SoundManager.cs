@@ -74,6 +74,10 @@ public class SoundManager : MonoBehaviour {
         ambientPlaying = true;
         lastAmbient = PlaySound(ambientSounds[Random.Range(0, ambientSounds.Length)], ambienceVolume, Random.Range(0.95f, 1.05f));
     }
+    
+    public static int GetBPM() {
+        return instance.BPM;
+    }
 
     public static AudioSource PlaySound(AudioClip clip, float volume = 1, float pitch = 1) {
          if(MUTE || instance == null) return null;
