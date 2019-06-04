@@ -40,6 +40,7 @@ public class Flashlight : MonoBehaviour {
 
     private void ActivateBeam(bool i)
     {
+        if(i && !narrowBeam.activeSelf) SoundManager.PlaySoundAt("BeamLight", transform.position, SoundManager.PLAYER_VOLUME, 1.2f);
         narrowBeam.SetActive(i);
         if(narrowBeam.activeSelf) {
             lightOn = false;

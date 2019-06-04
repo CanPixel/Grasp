@@ -2131,6 +2131,7 @@ MonoBehaviour:
   overlay: {fileID: 1372419950}
   pc: {fileID: 659480766}
   OnTrigger: 1
+  FadeIn: 0
 --- !u!1 &579297419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2287,6 +2288,7 @@ GameObject:
   - component: {fileID: 629789811}
   - component: {fileID: 629789814}
   - component: {fileID: 629789809}
+  - component: {fileID: 629789810}
   - component: {fileID: 629789808}
   - component: {fileID: 629789807}
   - component: {fileID: 629789813}
@@ -2441,6 +2443,22 @@ MonoBehaviour:
   target: {fileID: 1423537153}
   smoothness: 2
   addTargetOffset: 1
+--- !u!114 &629789810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629789806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d8180a6a76edb4cb63d74888831a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlay: {fileID: 1372419950}
+  pc: {fileID: 659480766}
+  OnTrigger: 0
+  FadeIn: 1
 --- !u!20 &629789811
 Camera:
   m_ObjectHideFlags: 0
@@ -2491,7 +2509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629789806}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 173.16, y: 3.4, z: -9}
+  m_LocalPosition: {x: -1.73, y: 3.4, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5986,6 +6004,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7c3b585b34c2d2a4196e9ad6a3d95d40, type: 3}
   - {fileID: 8300000, guid: 6a2fdebdafadb6a4798a58ccf6be956e, type: 3}
   - {fileID: 8300000, guid: 39bf94a68be017f48961815ff3fe8c5f, type: 3}
+  - {fileID: 8300000, guid: e4a3d503f3aaa2c45b1637a2183b3199, type: 3}
 --- !u!82 &1594540113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6598,7 +6617,7 @@ PrefabInstance:
     - target: {fileID: 8374870135624841109, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 173.16
+      value: -1.73
       objectReference: {fileID: 0}
     - target: {fileID: 8374870135624841109, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}

@@ -20,7 +20,14 @@ public class PlayerInput : MonoBehaviour {
         COM9,
         COM10,
         COM11,
-        COM12
+        COM12,
+        COM13,
+        COM14,
+        COM15,
+        COM16,
+        COM17,
+        COM18,
+        COM19
     }
     public static Port port;
     private static PlayerInput self;
@@ -130,6 +137,7 @@ public class PlayerInput : MonoBehaviour {
     IEnumerator Connect() {
         if(self == null) yield return new WaitForSeconds(0.5f);
         string[] ports = System.Enum.GetNames(typeof(Port));
+        bool connected = false;
         for(int i = 0; i < ports.Length; i++) {
             string port = ports[i];
             string[] portNums = System.Text.RegularExpressions.Regex.Split(port, @"\D+");
@@ -140,12 +148,14 @@ public class PlayerInput : MonoBehaviour {
                 stream.ReadTimeout = 1;
                 alternativeControls = true;
                 Cursor.visible = false;
-            } catch(System.IO.IOException) {
-                Debug.LogWarning("Couldn't find heartbeat + joystick configuration; Disabling alt controls.");
-                alternativeControls = false;
-                DisableUI();
+                connected = true;
                 yield break;
-            }
+            } catch(System.IO.IOException) {}
+        }
+        if(!connected) {
+            Debug.LogWarning("Couldn't find heartbeat + joystick configuration; Disabling alt controls.");
+            alternativeControls = false;
+            DisableUI();
         }
     }
 
