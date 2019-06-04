@@ -217,24 +217,6 @@ public class Enemy : MonoBehaviour {
         animator.SetFloat("Speed", Mathf.Abs(dir));
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(0.9f, 0.11f, 0.1f, 0.5f);
-        Gizmos.DrawWireSphere(transform.position + Vector3.up, nearDistance);
-        Gizmos.DrawWireSphere(transform.position + Vector3.up, targetRange);
-        Gizmos.color = new Color(1f, 0.21f, 0.2f, 0.8f);
-        Gizmos.DrawRay(transform.position, Vector3.up * maxJumpHeight);
-        Gizmos.color = Color.blue;
-        if (rightHand)
-        {
-            Gizmos.DrawWireSphere(rightHand.position, grabRange);
-        }
-        if (leftHand)
-        {
-            Gizmos.DrawWireSphere(leftHand.position, grabRange);
-        }
-    }
-
     //Animator Event function
     public void CheckAttackHit(AnimationInitializer anim)
     {
@@ -259,5 +241,23 @@ public class Enemy : MonoBehaviour {
     {
         if (anim) anim.Activate(transform, target.transform);
         else throw new MissingComponentException("No AnimationInitializer set for \"" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\".");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0.9f, 0.11f, 0.1f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up, nearDistance);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up, targetRange);
+        Gizmos.color = new Color(1f, 0.21f, 0.2f, 0.8f);
+        Gizmos.DrawRay(transform.position, Vector3.up * maxJumpHeight);
+        Gizmos.color = Color.blue;
+        if (rightHand)
+        {
+            Gizmos.DrawWireSphere(rightHand.position, grabRange);
+        }
+        if (leftHand)
+        {
+            Gizmos.DrawWireSphere(leftHand.position, grabRange);
+        }
     }
 }

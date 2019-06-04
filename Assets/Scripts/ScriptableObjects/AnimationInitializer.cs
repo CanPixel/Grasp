@@ -19,6 +19,8 @@ public class AnimationInitializer : ScriptableObject
         pc.ikWeight = 0;
         pc.desiredIKWeight = 0;
         pc.dead = true;
+        pc.animator.SetFloat("Speed", 0);
+        pc.animator.SetFloat("JumpCrouch", 0);
 
         //Set right transforms
         Vector3 localPosition = user.LocalPosition(transform.offsetPosition);

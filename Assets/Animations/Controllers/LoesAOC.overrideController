@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LoesAOC
+  m_Controller: {fileID: 9100000, guid: bcb61f0844ed6d048a4fd9d09a9a3777, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c25eea3d9f652bf43b77e8c8e63b436d, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 0412c22606b0e2a4199d077c87a1c287, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 656598a9ec70c994883a6ceb5aff535e, type: 3}
+    m_OverrideClip: {fileID: 7400002, guid: 2f09d391a7338d042bcb51c29cf6e6a4, type: 3}
