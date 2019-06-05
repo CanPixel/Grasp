@@ -106,6 +106,11 @@ public sealed class EnemyController : MonoBehaviour
     private void Chase()
     {
         Move();
+        if (moth && !Flashlight.IsLightOn())
+        {
+            TransitionToState(State.Hiding);
+            return;
+        }
         if (remainingDistance <= 0)
         {
             TransitionToState(State.Attacking);
@@ -133,13 +138,13 @@ public sealed class EnemyController : MonoBehaviour
     private void Hide()
     {
         direction = target.position - transform.position;
-        if (m_ScareTimer < 1.5f)
+        if (m_ScareTimer < 1.5f || moth)
         {
             m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
             if (Mathf.Abs(direction.x) > 0.05f)
                 transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 270 : 90), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         }
-        if (direction.magnitude > detectionRange || m_ScareTimer <= 0)
+        if (!moth && (direction.magnitude > detectionRange || m_ScareTimer <= 0))
         {
             TransitionToState(State.Chasing);
         }
@@ -163,9 +168,9 @@ public sealed class EnemyController : MonoBehaviour
     public void OnCastLightAt()
     {
         if (player.dead) return;
-        if (moth)
+        if (moth && (currentState != State.Chasing || currentState != State.Detecting))
         {
-            //Extra behaviour
+            TransitionToState(State.Detecting);
         }
         else
         {
@@ -222,7 +227,6 @@ public sealed class EnemyController : MonoBehaviour
             Debug.DrawRay(transform.position + Vector3.up * m_GroundCheckDistance, transform.forward);
             if (!Physics.Raycast(transform.position + Vector3.up * m_GroundCheckDistance, transform.forward, out footCast)) return false;
             float slopeAngle = Vector3.Angle(footCast.normal, transform.up);
-            Debug.Log(slopeAngle);
             if (slopeAngle < maxSlopeAngle)
             {
                 Debug.DrawRay(transform.position + new Vector3(direction.x > 0 ? 1.5f : -1.5f, maxJumpHeight, 0), Vector3.down * maxJumpHeight, Color.red);
