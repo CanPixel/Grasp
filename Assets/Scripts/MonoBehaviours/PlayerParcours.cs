@@ -28,6 +28,9 @@ public class PlayerParcours : MonoBehaviour
                     //We got 'em. Attach player to rope stuff
                     int index = grabObjects.Length - 1;
 
+                    var onGrabEvent = grabObjects[grabObjects.Length - 1].GetComponent<OnGrab>();
+                    if(onGrabEvent != null) onGrabEvent.Event.Invoke();
+
                     //First, make sure the player stays on the exact same position as he was when the grab was found
                     m_Offset = grabObjects[index].transform.position - transform.position;
                     transform.SetParent(grabObjects[index].transform, true);
@@ -43,24 +46,24 @@ public class PlayerParcours : MonoBehaviour
                     SoundManager.PlaySoundAt("Swing", transform.position, 0.5f, Random.Range(0.9f, 1f));
                 }
             }
-            else
-            {
-                //Release rope grab
-                transform.SetParent(null);
-                m_Controller.SetIKOverrideTarget(null);
-                m_Controller.rigidbody.isKinematic = false;
-                m_Controller.rigidbody.velocity = m_RopeRigidbody.velocity;
-                m_RopeRigidbody = null;
-                m_Controller.isGrabbing = false;
-                transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
-                SoundManager.PlaySoundAt("Jump", transform.position, 0.05f, Random.Range(1f, 1.2f));
-            }
+            else ReleaseRopeGrab();
         }
         if (m_Controller.isGrabbing)
         {
             transform.position = m_RopeRigidbody.transform.position - m_Offset;
             m_RopeRigidbody.AddForce(Vector3.right * Input.GetAxis("Horizontal") * 20);
         }
+    }
+
+    public void ReleaseRopeGrab() {
+        transform.SetParent(null);
+        m_Controller.SetIKOverrideTarget(null);
+        m_Controller.rigidbody.isKinematic = false;
+        if(m_RopeRigidbody != null) m_Controller.rigidbody.velocity = m_RopeRigidbody.velocity;
+        m_RopeRigidbody = null;
+        m_Controller.isGrabbing = false;
+        transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
+        SoundManager.PlaySoundAt("Jump", transform.position, 0.05f, Random.Range(1f, 1.2f));
     }
 
     private void OnDrawGizmosSelected()
