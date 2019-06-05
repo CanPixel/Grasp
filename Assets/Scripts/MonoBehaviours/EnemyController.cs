@@ -81,11 +81,11 @@ public sealed class EnemyController : MonoBehaviour
 
     private void Chase()
     {
-        //Move and rotate
-        direction = target.position - transform.position;
-        m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
-        if (Mathf.Abs(direction.x) > 0.05f)
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
+        Move();
+        if (remainingDistance <= 0)
+        {
+            TransitionToState(State.Attacking);
+        }
     }
 
     private void Attack()
@@ -114,6 +114,15 @@ public sealed class EnemyController : MonoBehaviour
         {
             Debug.LogWarning("Transition to active state is redundant. Cancelling.", gameObject);
         }
+    }
+
+    private void Move()
+    {
+        direction = target.position - transform.position;
+        remainingDistance = Mathf.Max(0, Vector3.Distance(transform.position, target.transform.position) - stoppingDistance);
+        m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x) - remainingDistance));
+        if (Mathf.Abs(direction.x) > 0.05f)
+            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
     }
 
     private void CheckGrounded()
