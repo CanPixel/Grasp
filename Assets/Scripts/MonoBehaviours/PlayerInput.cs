@@ -193,7 +193,11 @@ public class PlayerInput : MonoBehaviour {
         if(!alternativeControls) return;
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, Mathf.Lerp(overlay.color.a, HasConnection() ? 0 : overlayBaseAlpha, Time.deltaTime * 2));
         if(HasConnection()) ConnectionScale = Mathf.Lerp(ConnectionScale, 0, Time.deltaTime * 3);
-        else ConnectionScale = Mathf.Lerp(ConnectionScale, 1, Time.deltaTime * 3);
+        else {
+            ConnectionScale = Mathf.Lerp(ConnectionScale, 1, Time.deltaTime * 3);
+            HeartRateBPM.enabled = false;
+        }
         ConnectionText.transform.localScale = new Vector3(ConnectionScale, ConnectionScale, ConnectionScale); 
+
     }
 }

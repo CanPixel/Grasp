@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DeathSink : MonoBehaviour {
-    private float sink = 500;
+    public int sinkingDuration = 500;
+    public float sinkingSpeed = 1.5f;
+
+    private float sink;
     public FadeOut fade;
     public PlayerController playerController;
 
     private float outOfLake = 0;
     private bool inLake = false;
 
+    void Awake() {
+        sink = sinkingDuration;
+    }
+
     void Update() {
         if(sink < 400) CinematicCam.shakeSpeed = (1 / sink) * 500f;
-        if(sink < 150) {
+        if(sink < 170) {
             fade.Fade();
-            if(sink < 100) playerController.lockControls = true;
+            if(sink < 100 && sink > 20) playerController.lockControls = true;
         }
 
         if(outOfLake > 0) outOfLake += Time.deltaTime;
         if(outOfLake > 1.2f) {
-            sink = 500;
+            sink = sinkingDuration;
             outOfLake = 0;
             playerController.SetJump(true);
         }
@@ -31,7 +38,7 @@ public class DeathSink : MonoBehaviour {
             if(col.tag == "Player") playerController.SetJump(false);
             rb.AddForce(sink * Vector3.up);
             outOfLake = 0;
-            if(sink > 0) sink -= 1;
+            if(sink > 0) sink -= sinkingSpeed;
         }
     }
 
@@ -44,8 +51,8 @@ public class DeathSink : MonoBehaviour {
     }
 
     void OnTriggerExit(Collider col) {
-        if((col.tag == "Enemy" || col.tag == "Player") && sink < 500) {
-            sink = Mathf.Clamp(sink + 20, 0, 500);
+        if((col.tag == "Enemy" || col.tag == "Player") && sink < sinkingDuration) {
+            sink = Mathf.Clamp(sink + 20, 0, sinkingDuration);
             outOfLake = 0.1f;
             inLake = false;
             if(sink > 400) playerController.SetJump(true);

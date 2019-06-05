@@ -2,31 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class FadeOut : MonoBehaviour {
     public RawImage overlay;
     public PlayerController pc;
 
-    private bool fade = false;
+    private bool fade = false, done = false;
 
     public bool OnTrigger = true, FadeIn = false;
 
+    public UnityEvent postFade;
+
     void Start() {
+        StartFadeIn();
+    }
+
+    protected void StartFadeIn() {
         if(FadeIn) {
             overlay.color = new Color(0, 0, 0, 1f);
             fade = true;
         }
     }
     
-    void FixedUpdate() {
+    void LateUpdate() {
         if(fade) {
             overlay.enabled = true;
-            if(FadeIn) overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 0), Time.deltaTime * 0.5f);
+            if(FadeIn) {
+                if(!done) {
+                    if(overlay.color.a > 0.1f) overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 0), Time.deltaTime * 0.5f);
+                    else done = true;
+                } 
+            }
             else {
-                overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 1f), Time.deltaTime * 1.2f);
-                AudioListener.volume = Mathf.Lerp(AudioListener.volume, 0, Time.deltaTime);
+                if(!done) {
+                    overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 1f), Time.deltaTime * 1.2f);
+                    AudioListener.volume = Mathf.Lerp(AudioListener.volume, 0, Time.deltaTime);
+                    if(overlay.color.a > 0.975f) {
+                        done = true;
+                        postFade.Invoke();
+                        reset();
+                    }
+                }
             }
         }
+    }
+
+    public void reset() {
+        fade = false;
+        done = false;
+        StartFadeIn();
     }
 
     void OnTriggerEnter(Collider col) {

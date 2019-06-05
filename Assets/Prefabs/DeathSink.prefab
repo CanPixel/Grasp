@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3935387070623122846}
   - component: {fileID: 1873144728}
   - component: {fileID: 1873144729}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DeathSink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b281b9746a04cf24a9e1af4c99b7340a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sinkingDuration: 500
+  sinkingSpeed: 1.5
   fade: {fileID: 3935387070623122846}
+  playerController: {fileID: 0}
 --- !u!114 &3935387070623122846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,6 +79,12 @@ MonoBehaviour:
   overlay: {fileID: 0}
   pc: {fileID: 0}
   OnTrigger: 0
+  FadeIn: 0
+  postFade:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!23 &1873144728
 MeshRenderer:
   m_ObjectHideFlags: 0
