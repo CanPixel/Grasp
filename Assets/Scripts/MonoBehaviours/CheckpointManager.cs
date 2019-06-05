@@ -12,19 +12,25 @@ public class CheckpointManager : MonoBehaviour {
     
     private List<Checkpoint> checkpoints = new List<Checkpoint>();
 
+    private PlayerController controller;
+    private FadeOut fadeIn;
+
     void Awake() {
+        fadeIn = Camera.main.GetComponent<FadeOut>();
+        controller = GetComponent<PlayerController>();
         foreach(Transform child in checkpointOBJ.transform) checkpoints.Add(child.GetComponent<Checkpoint>());
     }
 
     void Start() {
-        MovePlayer(GetCheckpoint(beginAt));
+        current = GetCheckpoint(beginAt);
+        MovePlayer(current);
     }
 
     [Header("Leave Empty")]
     public Checkpoint current;
 
     void Update() {
-        X = transform.position.x;
+        if(X < transform.position.x) X = transform.position.x;
 
         foreach(Checkpoint check in checkpoints) {
             if(X > check.x) current = check;
@@ -37,8 +43,18 @@ public class CheckpointManager : MonoBehaviour {
         Camera.main.transform.position = new Vector3(pos.x, pos.y, Camera.main.transform.position.z);
     }
 
-    public Vector2 GetCheckpoint(int i) {
-        if(i > checkpoints.Count) return new Vector2(checkpoints[0].x, checkpoints[0].y);
-        return new Vector2(checkpoints[i].x, checkpoints[i].y);
+    public void MovePlayer(Checkpoint check) {
+        MovePlayer(new Vector2(check.x, check.y));
+    }
+
+    public Checkpoint GetCheckpoint(int i) {
+        if(i > checkpoints.Count) return checkpoints[0];
+        return checkpoints[i];
+    }
+
+    public void Die() {
+        MovePlayer(current);
+        controller.lockControls = false;
+        fadeIn.reset();
     }
 }

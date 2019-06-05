@@ -13,6 +13,7 @@ public class CinematicCam : MonoBehaviour {
 
     void Awake() {
         cm = GetComponent<VerySimpleCameraTracker>();
+        GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
     }
 
     void OnTriggerEnter(Collider col) {
@@ -25,9 +26,9 @@ public class CinematicCam : MonoBehaviour {
     void FixedUpdate() {
         if(camArea != null) {
             cm.ChangeCam(camArea.offset, camArea.speed);
-            try {
-                transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(camArea.rotation.x + Mathf.Cos(Time.time * shakeSpeed) * shakeAmp, camArea.rotation.y + Mathf.Sin(Time.time * shakeSpeed) * shakeAmp, camArea.rotation.z), Time.deltaTime * camArea.speed);
-            } catch(System.Exception) {}
+            float xShake = Mathf.Cos(Time.time * shakeSpeed) * shakeAmp;
+            float yShake = Mathf.Sin(Time.time * shakeSpeed) * shakeAmp;
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(camArea.rotation.x, camArea.rotation.y, camArea.rotation.z), Time.deltaTime * camArea.speed);
         }
     }
 }
