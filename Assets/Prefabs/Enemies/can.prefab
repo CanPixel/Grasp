@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 7608722307505894598}
   - component: {fileID: 1386530877}
   - component: {fileID: 5279121111175331974}
-  - component: {fileID: 16825675102314446}
+  - component: {fileID: 2108699768}
   m_Layer: 14
   m_Name: can
   m_TagString: Vampire
@@ -147,7 +147,7 @@ CapsuleCollider:
   m_Height: 2.02
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &16825675102314446
+--- !u!114 &2108699768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,28 +156,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7608722307513304836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b13aa7697b9da14eb55a4beb8ffeca1, type: 3}
+  m_Script: {fileID: 11500000, guid: b9d20e40fa007e342b83f9ce720c8cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  moveSpeed: 1
-  jumpForce: 4
-  maxJumpHeight: 4
-  maxSlopeAngle: 45
-  targetRange: 10
-  nearDistance: 3
-  player: {fileID: 0}
-  playerLightPoint: {fileID: 0}
-  behavior: 1
-  groundCheckDistance: 0.1
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  groundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
-  airborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
-  grabRange: 0.5
+  moth: 0
+  currentState: 0
+  detectionRange: 12
+  stoppingDistance: 2
+  grabRange: 0.45
   rightHand: {fileID: 7608722307513342778}
   leftHand: {fileID: 7608722307513342780}
+  m_GroundCheckDistance: 0.2
+  m_GroundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
+  m_AirborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
+  m_GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &7608722307513304838
 GameObject:
   m_ObjectHideFlags: 0

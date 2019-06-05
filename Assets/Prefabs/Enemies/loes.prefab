@@ -1278,8 +1278,8 @@ GameObject:
   - component: {fileID: 2757981571258866179}
   - component: {fileID: 2757981571249450857}
   - component: {fileID: 2757981571249450856}
-  - component: {fileID: 2757981571249450863}
-  m_Layer: 0
+  - component: {fileID: 397565785}
+  m_Layer: 13
   m_Name: loes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,7 +1351,7 @@ CapsuleCollider:
   m_Height: 1.6648605
   m_Direction: 1
   m_Center: {x: 0, y: 0.82243025, z: 0}
---- !u!114 &2757981571249450863
+--- !u!114 &397565785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1360,28 +1360,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2757981571249351131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b13aa7697b9da14eb55a4beb8ffeca1, type: 3}
+  m_Script: {fileID: 11500000, guid: b9d20e40fa007e342b83f9ce720c8cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  moveSpeed: 1
-  jumpForce: 4
-  maxJumpHeight: 4
-  maxSlopeAngle: 45
-  targetRange: 10
-  nearDistance: 3
-  player: {fileID: 0}
-  playerLightPoint: {fileID: 0}
-  behavior: 0
-  groundCheckDistance: 0.1
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 1
-  groundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
-  airborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
-  grabRange: 0.5
+  moth: 1
+  currentState: 0
+  detectionRange: 12
+  stoppingDistance: 2
+  grabRange: 0.45
   rightHand: {fileID: 2757981571249321413}
   leftHand: {fileID: 2757981571249321415}
+  m_GroundCheckDistance: 0.2
+  m_GroundedMaterial: {fileID: 13400000, guid: 77d00e9e1858da344b9fcacff0f674bb, type: 2}
+  m_AirborneMaterial: {fileID: 13400000, guid: 10608427f681a434c92bdf3bbe9cc917, type: 2}
+  m_GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &2757981571249351133
 GameObject:
   m_ObjectHideFlags: 0

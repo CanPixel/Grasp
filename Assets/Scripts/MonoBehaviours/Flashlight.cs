@@ -62,8 +62,8 @@ public class Flashlight : MonoBehaviour {
         RaycastHit hit;
         bool rayHit = Physics.Raycast(lightPoint.transform.position, lightPoint.transform.forward, out hit, 20);
         if(rayHit && hit.collider.gameObject != null) {
-            if(lightOn && hit.collider.gameObject.tag == "Vampire") hit.collider.gameObject.GetComponent<Enemy>().Scare(transform.position);
-            if(lightOn && hit.collider.gameObject.tag != "Light") flashPoint.transform.position = hit.point;
+            if(lightOn && hit.collider.gameObject.CompareTag("Vampire")) hit.collider.gameObject.GetComponent<EnemyController>().OnCastLightAt();
+            if(lightOn && !hit.collider.gameObject.CompareTag("Light")) flashPoint.transform.position = hit.point;
         }
         if(!rayHit || !lightOn) flashPoint.transform.position = new Vector3(0, -100, 0);
     }
