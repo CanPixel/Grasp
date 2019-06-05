@@ -19,13 +19,13 @@ public sealed class EnemyController : MonoBehaviour
     public float remainingDistance { get; set; }
     public Vector3 direction { get; set; }
     public bool isAnimating { get; set; }
-    public bool scared { get; private set; }
 
     [SerializeField] float m_GroundCheckDistance = 0.2f;
     [SerializeField] PhysicMaterial m_GroundedMaterial = default, m_AirborneMaterial = default;
     [SerializeField] LayerMask m_GroundLayers = 0;
 
     private float m_StateTimer = 0;
+    private float m_ScareTimer = 0;
     private Animator m_Animator = default;
     private bool m_Grounded = true;
     private CapsuleCollider m_EnemyCollider;
@@ -89,6 +89,7 @@ public sealed class EnemyController : MonoBehaviour
 
     private void Detect()
     {
+        m_Animator.SetTrigger("Roar");
         if (Countdown(m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length))
         {
             if (!player.dead && Vector3.Distance(target.position, transform.position) <= detectionRange)
@@ -132,13 +133,17 @@ public sealed class EnemyController : MonoBehaviour
     private void Hide()
     {
         direction = target.position - transform.position;
-        m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
-        if (Mathf.Abs(direction.x) > 0.05f)
-            transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 270 : 90), Time.deltaTime * 20 * Mathf.Abs(direction.x));
-        if (direction.magnitude > detectionRange)
+        if (m_ScareTimer < 1.5f)
+        {
+            m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
+            if (Mathf.Abs(direction.x) > 0.05f)
+                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 270 : 90), Time.deltaTime * 20 * Mathf.Abs(direction.x));
+        }
+        if (direction.magnitude > detectionRange || m_ScareTimer <= 0)
         {
             TransitionToState(State.Chasing);
         }
+        m_ScareTimer -= Time.deltaTime;
     }
     #endregion
 
@@ -164,7 +169,8 @@ public sealed class EnemyController : MonoBehaviour
         }
         else
         {
-            if (currentState != State.Hiding && !scared)
+            m_ScareTimer = 2;
+            if (currentState != State.Hiding)
             {
                 m_Animator.ResetTrigger("Attack");
                 m_Animator.SetTrigger("Hurt");
@@ -209,14 +215,28 @@ public sealed class EnemyController : MonoBehaviour
 
         if (Physics.Raycast(transform.position + new Vector3(transform.eulerAngles.y == 90 ? 1 : -1, 6, 0), Vector3.down * maxJumpHeight, out adjacentHit, maxJumpHeight, m_GroundLayers))
         {
-            //Determine if its angle is not scalable
-            Debug.Log(Vector3.Angle(adjacentHit.normal, transform.up));
-            float slopeAngle = Vector3.Angle(adjacentHit.normal, transform.up);
+            if (adjacentHit.point.y < transform.position.y) return false;
+
+            //Determine if the object adjacent to the foot is too steep to walk and if a jump is required.
+            RaycastHit footCast = new RaycastHit();
+            Debug.DrawRay(transform.position + Vector3.up * m_GroundCheckDistance, transform.forward);
+            if (!Physics.Raycast(transform.position + Vector3.up * m_GroundCheckDistance, transform.forward, out footCast)) return false;
+            float slopeAngle = Vector3.Angle(footCast.normal, transform.up);
+            Debug.Log(slopeAngle);
+            if (slopeAngle < maxSlopeAngle)
+            {
+                Debug.DrawRay(transform.position + new Vector3(direction.x > 0 ? 1.5f : -1.5f, maxJumpHeight, 0), Vector3.down * maxJumpHeight, Color.red);
+                return false;
+            }
+
+            //Determine if the planned landing area angle is not scalable
+            slopeAngle = Vector3.Angle(adjacentHit.normal, transform.up);
             if (slopeAngle > maxSlopeAngle)
             {
                 Debug.DrawRay(transform.position + new Vector3(direction.x > 0 ? 1.5f : -1.5f, maxJumpHeight, 0), Vector3.down * maxJumpHeight, Color.red);
                 return false;
             }
+
             //Return if a jump is not too high.
             float height = adjacentHit.point.y - transform.position.y;
             if (height < maxJumpHeight && height > m_GroundCheckDistance)

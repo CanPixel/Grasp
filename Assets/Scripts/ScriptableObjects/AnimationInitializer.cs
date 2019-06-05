@@ -22,6 +22,7 @@ public class AnimationInitializer : ScriptableObject
         pc.animator.WriteDefaultValues();
 
         //Set right transforms
+        target.SetParent(user);
         Vector3 localPosition = user.LocalPosition(transform.offsetPosition);
         target.position = localPosition;
         target.eulerAngles = user.eulerAngles + transform.offsetEulerAngles;
@@ -31,7 +32,7 @@ public class AnimationInitializer : ScriptableObject
         Animator ua = user.GetComponent<Animator>();
         ua.ResetTrigger("Attack");
         ua.ResetTrigger("Hurt");
-        ua.Play(clipName);
+        ua.Play(clipName, -1, 0);
         target.GetComponent<Animator>().Play(clipName);
     }
 }
