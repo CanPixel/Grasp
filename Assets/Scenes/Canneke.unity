@@ -7586,7 +7586,7 @@ PrefabInstance:
     - target: {fileID: 1522656649432665595, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}
       propertyPath: beginAt
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8374870135474963744, guid: 52f55ce33d636f542aa6901d33c81314,
         type: 3}
@@ -9962,19 +9962,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834888 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226472, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10007,19 +9997,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226474, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10052,19 +10032,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226476, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10097,19 +10067,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226478, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10142,19 +10102,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226480, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10187,19 +10137,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226484, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10232,19 +10172,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834902 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226486, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10277,19 +10207,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834904 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226488, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10322,19 +10242,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834906 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226490, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10367,19 +10277,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834908 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226492, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10412,19 +10312,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226494, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10457,19 +10347,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834978 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226498, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10502,19 +10382,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226500, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10547,19 +10417,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1 &556531052735834982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7046582013562226502, guid: 27aeb7ec38eb1104fa44226a9986fae4,
@@ -10592,19 +10452,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 659480767}
-        m_MethodName: ReleaseRopeGrab
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  BoulderGrabber: 1
 --- !u!1001 &851621042167666216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11363,6 +11213,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boulder Rope
       objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562226468, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7046582013562657540, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11446,117 +11301,117 @@ PrefabInstance:
     - target: {fileID: 7046582013562257877, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.5000004
+      value: 0.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257875, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.5000002
+      value: 0.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257873, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.00000021855695
+      value: 0.00000021855692
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257873, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.5000002
+      value: 0.5000004
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257885, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.00000013113419
+      value: 0.00000013113416
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257885, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999985
+      value: 0.50000006
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257883, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.0000000874228
+      value: 0.00000008742278
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257883, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999985
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257883, guid: 27aeb7ec38eb1104fa44226a9986fae4,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.z
-      value: 0.00000017881393
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046582013562257831, guid: 27aeb7ec38eb1104fa44226a9986fae4,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 2.0843214e-14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046582013562257831, guid: 27aeb7ec38eb1104fa44226a9986fae4,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 0.49999973
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: -0.000000043711346
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
-        type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 0.49999946
-      objectReference: {fileID: 0}
-    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.000000059604645
       objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562257831, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562257831, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.00000004371139
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 7046582013562257829, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.000000029802322
+      objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257827, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.000000087422734
+      value: -0.00000008742278
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257827, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999943
+      value: 0.4999999
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257839, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.00000017484551
+      value: -0.00000017484555
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257839, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999937
+      value: 0.49999985
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257837, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.0000002185569
+      value: -0.00000021855698
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257837, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999925
+      value: 0.5000002
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257833, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.00000030597963
+      value: -0.0000003059797
       objectReference: {fileID: 0}
     - target: {fileID: 7046582013562257833, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.49999878
+      value: 0.49999973
       objectReference: {fileID: 0}
     - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
         type: 3}
@@ -11607,6 +11462,46 @@ PrefabInstance:
         type: 3}
       propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: DestroyOBJ
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: Event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498410758609262425, guid: 27aeb7ec38eb1104fa44226a9986fae4,
+        type: 3}
+      propertyPath: BoulderGrabber
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27aeb7ec38eb1104fa44226a9986fae4, type: 3}
