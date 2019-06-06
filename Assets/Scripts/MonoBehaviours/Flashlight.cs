@@ -7,7 +7,7 @@ public class Flashlight : MonoBehaviour {
     public GameObject narrowBeam;
     public Light lightPoint;
 
-    private bool lightOn = true;
+    private bool lightOn = true, beamLightOn = false;
     private static Flashlight self;
 
     private float beamDelay = 0;
@@ -26,8 +26,7 @@ public class Flashlight : MonoBehaviour {
     void Update() {
         if(Input.GetMouseButtonDown(2) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
 
-        if (Input.GetMouseButton(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 0))
-        {
+        if (Input.GetMouseButton(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 0)) {
             beamDelay += Time.deltaTime;
             if (beamDelay > holdTillBeam) ActivateBeam(true);
         }
@@ -44,7 +43,9 @@ public class Flashlight : MonoBehaviour {
         if(narrowBeam.activeSelf) {
             lightOn = false;
             lightPoint.enabled = false;
+            beamLightOn = true;
         }
+        else beamLightOn = false;
         if (!i) {
             beamDelay = 0;
             castBeam = false;
@@ -58,14 +59,18 @@ public class Flashlight : MonoBehaviour {
         return self.lightOn;
     }
 
+    public static bool isBeamLight() {
+        return self.beamLightOn;
+    }
+
     protected void CastLight() {
         RaycastHit hit;
         bool rayHit = Physics.Raycast(lightPoint.transform.position, lightPoint.transform.forward, out hit, 20);
         if(rayHit && hit.collider.gameObject != null) {
             if(lightOn && hit.collider.gameObject.CompareTag("Vampire")) hit.collider.gameObject.GetComponent<EnemyController>().OnCastLightAt();
-            if(lightOn && !hit.collider.gameObject.CompareTag("Light")) flashPoint.transform.position = hit.point;
+            if((beamLightOn || lightOn) && !hit.collider.gameObject.CompareTag("Light")) flashPoint.transform.position = hit.point;
         }
-        if(!rayHit || !lightOn) flashPoint.transform.position = new Vector3(0, -100, 0);
+        if(!rayHit || (!lightOn && !beamLightOn)) flashPoint.transform.position = new Vector3(0, -100, 0);
     }
 
     public void SwitchLight() {
