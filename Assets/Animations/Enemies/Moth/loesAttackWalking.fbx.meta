@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f09d391a7338d042bcb51c29cf6e6a4
+guid: 965ad07c4409c804db0239c572cc21e5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,87 +8,86 @@ ModelImporter:
     100004: BackUpperLeg_L
     100006: BackUpperLeg_R
     100008: Collar
-    100010: FrontLowerLeg_L
-    100012: FrontLowerLeg_R
-    100014: FrontUpperLeg_L
-    100016: FrontUpperLeg_R
-    100018: Head
-    100020: Hips
-    100022: //RootNode
-    100024: MiddleLowerLeg_L
-    100026: MiddleLowerLeg_R
-    100028: MiddleUpperLeg_L
-    100030: MiddleUpperLeg_R
-    100032: MouthTentacleA_1_L
-    100034: MouthTentacleA_1_R
-    100036: MouthTentacleA_2_L
-    100038: MouthTentacleA_2_R
-    100040: MouthTentacleA_3_L
-    100042: MouthTentacleA_3_R
-    100044: MouthTentacleB_1_L
-    100046: MouthTentacleB_1_R
-    100048: MouthTentacleB_2_L
-    100050: MouthTentacleB_2_R
-    100052: MouthTentacleB_3_L
-    100054: MouthTentacleB_3_R
-    100056: MouthTentacleC_1_L
-    100058: MouthTentacleC_1_R
-    100060: MouthTentacleC_2_L
-    100062: MouthTentacleC_2_R
-    100064: MouthTentacleC_3_L
-    100066: MouthTentacleC_3_R
-    100068: Neck
-    100070: Reference
-    100072: Spine1
-    100074: Spine2
-    100076: Spine3
-    100078: Cube
-    100080: LoesArmature
+    100010: Cube
+    100012: FrontLowerLeg_L
+    100014: FrontLowerLeg_R
+    100016: FrontUpperLeg_L
+    100018: FrontUpperLeg_R
+    100020: Head
+    100022: Hips
+    100024: LoesArmature
+    100026: //RootNode
+    100028: MiddleLowerLeg_L
+    100030: MiddleLowerLeg_R
+    100032: MiddleUpperLeg_L
+    100034: MiddleUpperLeg_R
+    100036: MouthTentacleA_1_L
+    100038: MouthTentacleA_1_R
+    100040: MouthTentacleA_2_L
+    100042: MouthTentacleA_2_R
+    100044: MouthTentacleA_3_L
+    100046: MouthTentacleA_3_R
+    100048: MouthTentacleB_1_L
+    100050: MouthTentacleB_1_R
+    100052: MouthTentacleB_2_L
+    100054: MouthTentacleB_2_R
+    100056: MouthTentacleB_3_L
+    100058: MouthTentacleB_3_R
+    100060: MouthTentacleC_1_L
+    100062: MouthTentacleC_1_R
+    100064: MouthTentacleC_2_L
+    100066: MouthTentacleC_2_R
+    100068: MouthTentacleC_3_L
+    100070: MouthTentacleC_3_R
+    100072: Neck
+    100074: Reference
+    100076: Spine1
+    100078: Spine2
+    100080: Spine3
     400000: BackLowerLeg_L
     400002: BackLowerLeg_R
     400004: BackUpperLeg_L
     400006: BackUpperLeg_R
     400008: Collar
-    400010: FrontLowerLeg_L
-    400012: FrontLowerLeg_R
-    400014: FrontUpperLeg_L
-    400016: FrontUpperLeg_R
-    400018: Head
-    400020: Hips
-    400022: //RootNode
-    400024: MiddleLowerLeg_L
-    400026: MiddleLowerLeg_R
-    400028: MiddleUpperLeg_L
-    400030: MiddleUpperLeg_R
-    400032: MouthTentacleA_1_L
-    400034: MouthTentacleA_1_R
-    400036: MouthTentacleA_2_L
-    400038: MouthTentacleA_2_R
-    400040: MouthTentacleA_3_L
-    400042: MouthTentacleA_3_R
-    400044: MouthTentacleB_1_L
-    400046: MouthTentacleB_1_R
-    400048: MouthTentacleB_2_L
-    400050: MouthTentacleB_2_R
-    400052: MouthTentacleB_3_L
-    400054: MouthTentacleB_3_R
-    400056: MouthTentacleC_1_L
-    400058: MouthTentacleC_1_R
-    400060: MouthTentacleC_2_L
-    400062: MouthTentacleC_2_R
-    400064: MouthTentacleC_3_L
-    400066: MouthTentacleC_3_R
-    400068: Neck
-    400070: Reference
-    400072: Spine1
-    400074: Spine2
-    400076: Spine3
-    400078: Cube
-    400080: LoesArmature
+    400010: Cube
+    400012: FrontLowerLeg_L
+    400014: FrontLowerLeg_R
+    400016: FrontUpperLeg_L
+    400018: FrontUpperLeg_R
+    400020: Head
+    400022: Hips
+    400024: LoesArmature
+    400026: //RootNode
+    400028: MiddleLowerLeg_L
+    400030: MiddleLowerLeg_R
+    400032: MiddleUpperLeg_L
+    400034: MiddleUpperLeg_R
+    400036: MouthTentacleA_1_L
+    400038: MouthTentacleA_1_R
+    400040: MouthTentacleA_2_L
+    400042: MouthTentacleA_2_R
+    400044: MouthTentacleA_3_L
+    400046: MouthTentacleA_3_R
+    400048: MouthTentacleB_1_L
+    400050: MouthTentacleB_1_R
+    400052: MouthTentacleB_2_L
+    400054: MouthTentacleB_2_R
+    400056: MouthTentacleB_3_L
+    400058: MouthTentacleB_3_R
+    400060: MouthTentacleC_1_L
+    400062: MouthTentacleC_1_R
+    400064: MouthTentacleC_2_L
+    400066: MouthTentacleC_2_R
+    400068: MouthTentacleC_3_L
+    400070: MouthTentacleC_3_R
+    400072: Neck
+    400074: Reference
+    400076: Spine1
+    400078: Spine2
+    400080: Spine3
     2100000: No Name
     4300000: Cube
-    7400000: LoesArmature|LoesArmatureAction
-    7400002: Loes Walk
+    7400000: Loes Attack Walk
     9500000: //RootNode
     13700000: Cube
   externalObjects: {}
@@ -111,7 +110,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -120,17 +119,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Loes Walk
-      takeName: LoesArmature|LoesArmatureAction.001
+      name: Loes Attack Walk
+      takeName: LoesArmature|LoesArmatureAction
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
