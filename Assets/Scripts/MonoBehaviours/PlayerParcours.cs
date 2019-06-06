@@ -28,8 +28,17 @@ public class PlayerParcours : MonoBehaviour
                     //We got 'em. Attach player to rope stuff
                     int index = grabObjects.Length - 1;
 
-                    var onGrabEvent = grabObjects[grabObjects.Length - 1].GetComponent<OnGrab>();
-                    if(onGrabEvent != null) onGrabEvent.Event.Invoke();
+                    var onGrabEvent = grabObjects[index].GetComponent<OnGrab>();
+                    if(onGrabEvent != null) {
+                        onGrabEvent.Event.Invoke();
+                        if(onGrabEvent.BoulderGrabber) {
+                            ReleaseRopeGrab();
+                            transform.SetParent(null);
+                            m_Controller.isGrabbing = false;
+                            Destroy(grabObjects[0].transform.parent.parent.gameObject, 0.5f);
+                            return;
+                        }
+                    }
 
                     //First, make sure the player stays on the exact same position as he was when the grab was found
                     m_Offset = grabObjects[index].transform.position - transform.position;

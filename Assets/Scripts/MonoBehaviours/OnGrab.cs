@@ -5,4 +5,5 @@ using UnityEngine.Events;
 
 public class OnGrab : MonoBehaviour {
     public UnityEvent Event;
+    public bool BoulderGrabber = false;
 }
