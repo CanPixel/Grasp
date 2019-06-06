@@ -18,7 +18,9 @@ public class PlayerParcours : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        bool condition = Input.GetKeyDown(KeyCode.Space);
+        if(!PlayerInput.UsingAlternativeControls()) condition = Input.GetMouseButtonDown(0);
+        if (condition)
         {
             if (!m_Controller.isGrabbing)
             {//Check if grabbable stuff is in range of hand
