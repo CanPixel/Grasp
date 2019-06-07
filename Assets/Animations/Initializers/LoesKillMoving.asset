@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbde3ca44ac20e488a18c48a2a7c1ca, type: 3}
   m_Name: LoesKillMoving
   m_EditorClassIdentifier: 
-  clipName: Loes Kills Moving
+  userClipName: Kill Moving
+  targetClipName: Loes Kills Moving
   transform:
     offsetPosition: {x: 0, y: 0, z: 0}
     offsetEulerAngles: {x: 0, y: 0, z: 0}

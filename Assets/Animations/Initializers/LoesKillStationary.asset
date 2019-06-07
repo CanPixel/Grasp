@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fbde3ca44ac20e488a18c48a2a7c1ca, type: 3}
   m_Name: LoesKillStationary
   m_EditorClassIdentifier: 
-  clipName: Loes Kills Stationary
+  userClipName: Kill Stationary
+  targetClipName: Loes Kills Stationary
   transform:
-    offsetPosition: {x: 0, y: 0, z: 0}
+    offsetPosition: {x: 0, y: 0, z: 1.381}
     offsetEulerAngles: {x: 0, y: 0, z: 0}
     offsetScale: {x: 0, y: 0, z: 0}

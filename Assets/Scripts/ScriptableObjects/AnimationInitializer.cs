@@ -3,7 +3,8 @@
 [CreateAssetMenu(menuName = "Animation Initializer")]
 public class AnimationInitializer : ScriptableObject
 {
-    public string clipName = "Animation Clip";
+    public string userClipName = "Animation Clip";
+    public string targetClipName = "Animation Clip";
     public TransformSet transform;
 
     /// <summary>
@@ -32,8 +33,8 @@ public class AnimationInitializer : ScriptableObject
         Animator ua = user.GetComponent<Animator>();
         ua.ResetTrigger("Attack");
         ua.ResetTrigger("Hurt");
-        ua.Play(clipName, -1, 0);
-        target.GetComponent<Animator>().Play(clipName);
+        ua.Play(userClipName, 0, 0);
+        target.GetComponent<Animator>().Play(targetClipName);
     }
 }
 

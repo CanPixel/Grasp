@@ -195,7 +195,7 @@ public sealed class EnemyController : MonoBehaviour
             direction = target.position - transform.position;
         }
         remainingDistance = Mathf.Max(0, direction.magnitude - stoppingDistance);
-        m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x) - remainingDistance));
+        m_Animator.SetFloat("Speed", Mathf.Min(1, remainingDistance));
         if (Mathf.Abs(direction.x) > 0.05f)
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         if (m_Grounded)
@@ -300,5 +300,9 @@ public sealed class EnemyController : MonoBehaviour
         Gizmos.color = new Color(0.9f, 0.11f, 0.1f, 0.5f);
         Gizmos.DrawWireSphere(transform.position + Vector3.up, detectionRange);
         Gizmos.DrawWireSphere(transform.position + Vector3.up, stoppingDistance);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(rightHand.position, grabRange);
+        Gizmos.DrawWireSphere(leftHand.position, grabRange);
     }
 }

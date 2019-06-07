@@ -1367,7 +1367,10 @@ MonoBehaviour:
   currentState: 0
   detectionRange: 12
   stoppingDistance: 2
-  grabRange: 0.45
+  grabRange: 1
+  maxSlopeAngle: 45
+  maxJumpHeight: 6
+  jumpForce: 4
   rightHand: {fileID: 2757981571249321413}
   leftHand: {fileID: 2757981571249321415}
   m_GroundCheckDistance: 0.2
