@@ -170,6 +170,7 @@ public sealed class EnemyController : MonoBehaviour
         if (player.dead) return;
         if (moth && (currentState != State.Chasing || currentState != State.Detecting))
         {
+            Debug.Log("Chase!");
             TransitionToState(State.Detecting);
         }
         else

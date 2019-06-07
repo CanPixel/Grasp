@@ -1281,7 +1281,7 @@ GameObject:
   - component: {fileID: 397565785}
   m_Layer: 13
   m_Name: loes
-  m_TagString: Untagged
+  m_TagString: Moth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
