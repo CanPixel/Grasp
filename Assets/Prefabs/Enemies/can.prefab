@@ -162,8 +162,11 @@ MonoBehaviour:
   moth: 0
   currentState: 0
   detectionRange: 12
-  stoppingDistance: 2
+  stoppingDistance: 1
   grabRange: 0.45
+  maxSlopeAngle: 45
+  maxJumpHeight: 6
+  jumpForce: 4
   rightHand: {fileID: 7608722307513342778}
   leftHand: {fileID: 7608722307513342780}
   m_GroundCheckDistance: 0.2
@@ -172,6 +175,7 @@ MonoBehaviour:
   m_GroundLayers:
     serializedVersion: 2
     m_Bits: 1
+  m_AllowJumps: 1
 --- !u!1 &7608722307513304838
 GameObject:
   m_ObjectHideFlags: 0

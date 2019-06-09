@@ -3142,6 +3142,10 @@ PrefabInstance:
       propertyPath: m_GroundCheckDistance
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 397565785, guid: 5b886073b7c37654d9fab698f018eaa8, type: 3}
+      propertyPath: m_AllowJumps
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b886073b7c37654d9fab698f018eaa8, type: 3}
 --- !u!4 &455651092 stripped
@@ -4898,6 +4902,10 @@ PrefabInstance:
       propertyPath: lightPoint
       value: 
       objectReference: {fileID: 671337111}
+    - target: {fileID: 960730583, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
+      propertyPath: lightLength
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4169692437963005714, guid: 377e5faa51faeb14ba20e2558d6614dd,
         type: 3}
       propertyPath: m_IsActive

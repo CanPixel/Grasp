@@ -86,10 +86,22 @@ ModelImporter:
     400078: Spine2
     400080: Spine3
     2100000: No Name
+    2100002: moth_basic
+    2100004: moth_eyes
     4300000: Cube
     9500000: //RootNode
     13700000: Cube
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: moth_basic
+    second: {fileID: 2100000, guid: f39573464e1b4f5418fb046f62bb5785, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: moth_eyes
+    second: {fileID: 2100000, guid: d9007a95b77b5564096a6e17167088ba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -151,7 +163,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

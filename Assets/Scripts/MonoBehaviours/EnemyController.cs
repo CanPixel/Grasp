@@ -130,6 +130,7 @@ public sealed class EnemyController : MonoBehaviour
     {
         if (isAnimating) return;
         Move();
+        if (player.dead) TransitionToState(State.Detecting);
         if (remainingDistance > stoppingDistance)
         {
             TransitionToState(State.Chasing);
@@ -164,19 +165,15 @@ public sealed class EnemyController : MonoBehaviour
             m_StateTimer = 0;
             currentState = toState;
         }
-        else
-        {
-            Debug.LogWarning("Transition to active state is redundant. Cancelling.", gameObject);
-        }
     }
 
     public void OnCastLightAt()
     {
+        Debug.Log($"OnCastLightAt called by {gameObject.name}.");
         if (player.dead) return;
-        if (moth && (currentState != State.Chasing || currentState != State.Detecting))
+        if (moth)
         {
-            Debug.Log("Chase!");
-            TransitionToState(State.Detecting);
+            TransitionToState(State.Chasing);
         }
         else
         {
@@ -200,8 +197,9 @@ public sealed class EnemyController : MonoBehaviour
         {
             direction = target.position - transform.position;
         }
-        remainingDistance = Mathf.Max(0, direction.magnitude - stoppingDistance);
-        m_Animator.SetFloat("Speed", Mathf.Min(1, remainingDistance));
+        float distance = Vector3.Distance(transform.position, target.position);
+        remainingDistance = Mathf.Max(0, distance - stoppingDistance);
+        m_Animator.SetFloat("Speed", Mathf.Min(1, distance));
         if (Mathf.Abs(direction.x) > 0.05f)
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         if (m_Grounded)
