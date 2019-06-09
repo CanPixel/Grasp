@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 965ad07c4409c804db0239c572cc21e5
+guid: 5e1aab32abf428e48a347efeaaa9c4b7
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -87,7 +87,7 @@ ModelImporter:
     400080: Spine3
     2100000: No Name
     4300000: Cube
-    7400000: Loes Attack Walk
+    7400000: Loes Kill Moving - Loes
     9500000: //RootNode
     13700000: Cube
   externalObjects: {}
@@ -119,10 +119,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Loes Attack Walk
+      name: Loes Kill Moving - Loes
       takeName: LoesArmature|LoesArmatureAction
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -131,7 +131,7 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
@@ -141,15 +141,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.41818184
-        functionName: CheckAttackHit
-        data: 
-        objectReferenceParameter: {fileID: 11400000, guid: 07940ca8373978e42ae8332b36e599b1,
-          type: 2}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -161,10 +153,10 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    importVisibility: 0
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1

@@ -89,12 +89,15 @@ public sealed class EnemyController : MonoBehaviour
 
     private void Detect()
     {
+        //Check if there is no object between the enemy and the target
+        Debug.DrawLine(transform.position + Vector3.up, target.position + Vector3.up);
+        if (!Physics.Linecast(transform.position + Vector3.up, target.position + Vector3.up)) return;
         m_Animator.SetTrigger("Roar");
         if (Countdown(m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length))
         {
             if (!player.dead && Vector3.Distance(target.position, transform.position) <= detectionRange)
             {
-                TransitionToState(State.Chasing);
+                    TransitionToState(State.Chasing);
             }
             else
             {
