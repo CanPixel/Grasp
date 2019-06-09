@@ -4779,7 +4779,7 @@ PrefabInstance:
     - target: {fileID: 2761696216241975378, guid: 377e5faa51faeb14ba20e2558d6614dd,
         type: 3}
       propertyPath: m_BounceIntensity
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2761696216241975378, guid: 377e5faa51faeb14ba20e2558d6614dd,
         type: 3}
@@ -4898,6 +4898,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169692437455506675, guid: 377e5faa51faeb14ba20e2558d6614dd,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169692438616412234, guid: 377e5faa51faeb14ba20e2558d6614dd,
+        type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 377e5faa51faeb14ba20e2558d6614dd, type: 3}
@@ -13184,7 +13194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1970310294
 Transform:
   m_ObjectHideFlags: 0

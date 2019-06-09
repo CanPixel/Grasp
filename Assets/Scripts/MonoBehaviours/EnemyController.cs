@@ -23,6 +23,7 @@ public sealed class EnemyController : MonoBehaviour
     [SerializeField] float m_GroundCheckDistance = 0.2f;
     [SerializeField] PhysicMaterial m_GroundedMaterial = default, m_AirborneMaterial = default;
     [SerializeField] LayerMask m_GroundLayers = 0;
+    [SerializeField] bool m_AllowJumps = true;
 
     private float m_StateTimer = 0;
     private float m_ScareTimer = 0;
@@ -111,6 +112,7 @@ public sealed class EnemyController : MonoBehaviour
         Move();
         if (moth && !Flashlight.IsLightOn())
         {
+            m_Animator.SetTrigger("Hurt");
             TransitionToState(State.Hiding);
             return;
         }
@@ -204,7 +206,7 @@ public sealed class EnemyController : MonoBehaviour
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         if (m_Grounded)
         {
-            if (MustJump())
+            if (m_AllowJumps && MustJump())
             {
                 m_Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             }
@@ -224,7 +226,7 @@ public sealed class EnemyController : MonoBehaviour
 
         if (Physics.Raycast(transform.position + new Vector3(transform.eulerAngles.y == 90 ? 1 : -1, 6, 0), Vector3.down * maxJumpHeight, out adjacentHit, maxJumpHeight, m_GroundLayers))
         {
-            if (adjacentHit.point.y < transform.position.y) return false;
+            if (adjacentHit.point.y <= transform.position.y) return false;
 
             //Determine if the object adjacent to the foot is too steep to walk and if a jump is required.
             RaycastHit footCast = new RaycastHit();

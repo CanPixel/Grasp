@@ -6,6 +6,7 @@ public class Flashlight : MonoBehaviour {
     public GameObject flashPoint;
     public GameObject narrowBeam;
     public Light lightPoint;
+    public float lightLength = 4f;
 
     private bool lightOn = true, beamLightOn = false;
     private static Flashlight self;
@@ -65,7 +66,7 @@ public class Flashlight : MonoBehaviour {
 
     protected void CastLight() {
         RaycastHit hit;
-        bool rayHit = Physics.Raycast(lightPoint.transform.position, lightPoint.transform.forward, out hit, 20);
+        bool rayHit = Physics.Raycast(lightPoint.transform.position, lightPoint.transform.forward * lightLength, out hit, 20);
         if(rayHit && hit.collider.gameObject != null) {
             if(lightOn && (hit.collider.gameObject.CompareTag("Vampire") || hit.collider.gameObject.CompareTag("Moth")))
                 hit.collider.gameObject.GetComponent<EnemyController>().OnCastLightAt();
@@ -82,5 +83,11 @@ public class Flashlight : MonoBehaviour {
         lightOn = i;
         lightPoint.enabled = i;
         SoundManager.PlaySoundAt("Flashlight", transform.position, SoundManager.PLAYER_VOLUME, 1.2f);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Mathf.CorrelatedColorTemperatureToRGB(lightPoint.colorTemperature) * lightPoint.color;
+        Gizmos.DrawRay(lightPoint.transform.position, lightPoint.transform.forward * lightLength);
     }
 }
