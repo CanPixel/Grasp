@@ -103,7 +103,7 @@ public sealed class EnemyController : MonoBehaviour
     {
         //Check if there is no object between the enemy and the target
         Debug.DrawLine(transform.position + Vector3.up, target.position + Vector3.up);
-        if (Physics.Linecast(transform.position + Vector3.up, target.position + Vector3.up)) return;
+        if (Physics.Linecast(transform.position + Vector3.up, target.position + Vector3.up, out RaycastHit hit) && !hit.collider.CompareTag("Player")) return;
         animator.SetTrigger("Roar");
         if (Countdown(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length))
         {

@@ -6,10 +6,10 @@ public class CustomReverbZone : MonoBehaviour {
     public AudioReverbPreset preset;
 
     void OnTriggerStay(Collider col) {
-        if(col.tag == "Player") ReverbHandler.SetReverbType(preset);
+        if(col.CompareTag("Player")) ReverbHandler.SetReverbType(preset);
     }
 
     void OnTriggerExit(Collider col) {
-        if(col.tag == "Player") ReverbHandler.SetReverbType(SoundManager.GetAudioReverbPreset());
+        if(col.CompareTag("Player")) ReverbHandler.SetReverbType(SoundManager.GetAudioReverbPreset());
     }
 }

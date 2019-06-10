@@ -3204,6 +3204,10 @@ PrefabInstance:
       propertyPath: m_AllowJumps
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 397565785, guid: 5b886073b7c37654d9fab698f018eaa8, type: 3}
+      propertyPath: stoppingDistance
+      value: 2.52
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b886073b7c37654d9fab698f018eaa8, type: 3}
 --- !u!4 &455651092 stripped

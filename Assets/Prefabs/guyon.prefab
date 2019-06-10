@@ -569,9 +569,10 @@ GameObject:
   - component: {fileID: 1755557685}
   - component: {fileID: 1522656649432665595}
   - component: {fileID: 8735809629024907270}
+  - component: {fileID: 2093116747527540092}
   m_Layer: 10
   m_Name: guyon
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,7 +689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b5177ebf1fbdd4da67a4a1c6ffb9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkpoints: []
+  checkpointOBJ: {fileID: 0}
+  beginAt: 0
   current: {fileID: 0}
 --- !u!136 &8735809629024907270
 CapsuleCollider:
@@ -704,6 +706,18 @@ CapsuleCollider:
   m_Height: 1.76
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
+--- !u!114 &2093116747527540092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374870135625067445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad22613e396aee4aa1bc832854683e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8374870135625067449
 GameObject:
   m_ObjectHideFlags: 0
