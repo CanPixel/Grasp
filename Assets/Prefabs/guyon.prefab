@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 1522656649432665595}
   - component: {fileID: 8735809629024907270}
   - component: {fileID: 2093116747527540092}
+  - component: {fileID: 4548949628962082013}
   m_Layer: 10
   m_Name: guyon
   m_TagString: Player
@@ -718,6 +719,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ad22613e396aee4aa1bc832854683e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!167 &4548949628962082013
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374870135625067445}
+  m_Enabled: 1
+  m_MinDistance: 39
+  m_MaxDistance: 40
+  m_ReverbPreset: 0
+  m_Room: -10000
+  m_RoomHF: -10000
+  m_DecayTime: 1
+  m_DecayHFRatio: 1
+  m_Reflections: -2602
+  m_ReflectionsDelay: 0.007
+  m_Reverb: 200
+  m_ReverbDelay: 0.011
+  m_HFReference: 5000
+  m_Diffusion: 0
+  m_Density: 0
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &8374870135625067449
 GameObject:
   m_ObjectHideFlags: 0
