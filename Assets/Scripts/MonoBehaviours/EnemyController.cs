@@ -19,20 +19,24 @@ public sealed class EnemyController : MonoBehaviour
     public float remainingDistance { get; set; }
     public Vector3 direction { get; set; }
     public bool isAnimating { get; set; }
+    public Animator animator { get; private set; } = default;
 
     [SerializeField] float m_GroundCheckDistance = 0.2f;
     [SerializeField] PhysicMaterial m_GroundedMaterial = default, m_AirborneMaterial = default;
     [SerializeField] LayerMask m_GroundLayers = 0;
     [SerializeField] bool m_AllowJumps = true;
+    [SerializeField] Vector3 m_CrouchColliderCenter = new Vector3(0, 0.62f, 0);
+    [SerializeField] float m_CrouchColliderHeight = 1.27f;
 
     private float m_StateTimer = 0;
     private float m_ScareTimer = 0;
-    private Animator m_Animator = default;
     private bool m_Grounded = true;
     private CapsuleCollider m_EnemyCollider;
     private Rigidbody m_Rigidbody;
     private PlayerController player;
     private Vector3 m_StartingPosition;
+    private Vector3 m_StartingColliderCenter;
+    private float m_StartingColliderHeight;
 
     private void Awake()
     {
@@ -40,9 +44,11 @@ public sealed class EnemyController : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
         target = player.transform;
         direction = Vector3.zero;
-        m_Animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_EnemyCollider = GetComponent<Collider>() as CapsuleCollider;
+        m_StartingColliderCenter = m_EnemyCollider.center;
+        m_StartingColliderHeight = m_EnemyCollider.height;
     }
 
     private void Update()
@@ -74,8 +80,13 @@ public sealed class EnemyController : MonoBehaviour
     #region States
     private void AnyState()
     {
-        if (!isAnimating)
-            CheckGrounded();
+        if (isAnimating) return;
+
+        CheckGrounded();
+
+        bool crouch = animator.GetBool("Crouch");
+        m_EnemyCollider.height = crouch ? m_CrouchColliderHeight : m_StartingColliderHeight;
+        m_EnemyCollider.center = crouch ? m_CrouchColliderCenter : m_StartingColliderCenter;
     }
 
     private void Idle()
@@ -85,16 +96,16 @@ public sealed class EnemyController : MonoBehaviour
         {
             TransitionToState(State.Detecting);
         }
-        m_Animator.SetFloat("Speed", 0, 1, 0.5f);
+        animator.SetFloat("Speed", 0, 1, 0.5f);
     }
 
     private void Detect()
     {
         //Check if there is no object between the enemy and the target
         Debug.DrawLine(transform.position + Vector3.up, target.position + Vector3.up);
-        if (!Physics.Linecast(transform.position + Vector3.up, target.position + Vector3.up)) return;
-        m_Animator.SetTrigger("Roar");
-        if (Countdown(m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length))
+        if (Physics.Linecast(transform.position + Vector3.up, target.position + Vector3.up)) return;
+        animator.SetTrigger("Roar");
+        if (Countdown(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length))
         {
             if (!player.dead && Vector3.Distance(target.position, transform.position) <= detectionRange)
             {
@@ -112,7 +123,7 @@ public sealed class EnemyController : MonoBehaviour
         Move();
         if (moth && !Flashlight.IsLightOn())
         {
-            m_Animator.SetTrigger("Hurt");
+            animator.SetTrigger("Hurt");
             TransitionToState(State.Hiding);
             return;
         }
@@ -137,7 +148,7 @@ public sealed class EnemyController : MonoBehaviour
         }
         if (remainingDistance <= stoppingDistance)
         {
-            m_Animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
         }
     }
 
@@ -146,7 +157,7 @@ public sealed class EnemyController : MonoBehaviour
         direction = target.position - transform.position;
         if (m_ScareTimer < 1.5f || moth)
         {
-            m_Animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
+            animator.SetFloat("Speed", Mathf.Min(1, Mathf.Abs(direction.x)));
             if (Mathf.Abs(direction.x) > 0.05f)
                 transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 270 : 90), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         }
@@ -180,8 +191,8 @@ public sealed class EnemyController : MonoBehaviour
             m_ScareTimer = 2;
             if (currentState != State.Hiding)
             {
-                m_Animator.ResetTrigger("Attack");
-                m_Animator.SetTrigger("Hurt");
+                animator.ResetTrigger("Attack");
+                animator.SetTrigger("Hurt");
                 TransitionToState(State.Hiding);
             }
         }
@@ -199,14 +210,14 @@ public sealed class EnemyController : MonoBehaviour
         }
         float distance = Vector3.Distance(transform.position, target.position);
         remainingDistance = Mathf.Max(0, distance - stoppingDistance);
-        m_Animator.SetFloat("Speed", Mathf.Min(1, distance));
+        animator.SetFloat("Speed", Mathf.Min(1, distance));
         if (Mathf.Abs(direction.x) > 0.05f)
             transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (direction.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(direction.x));
         if (m_Grounded)
         {
             if (m_AllowJumps && MustJump())
             {
-                m_Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+                Jump();
             }
         }
         else
@@ -256,13 +267,18 @@ public sealed class EnemyController : MonoBehaviour
         return false;
     }
 
+    public void Jump()
+    {
+        m_Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+    }
+
     private void CheckGrounded()
     {
         RaycastHit ground = new RaycastHit();
-        if (m_Animator == null) return;
-        m_Grounded = m_Animator.applyRootMotion = Physics.Raycast(transform.position + Vector3.up * 0.02f, Vector3.down * m_GroundCheckDistance, out ground, m_GroundCheckDistance, m_GroundLayers);
+        if (animator == null) return;
+        m_Grounded = animator.applyRootMotion = Physics.Raycast(transform.position + Vector3.up * 0.02f, Vector3.down * m_GroundCheckDistance, out ground, m_GroundCheckDistance, m_GroundLayers);
         m_EnemyCollider.material = m_Grounded ? m_GroundedMaterial : m_AirborneMaterial;
-        m_Animator.SetBool("Grounded", m_Grounded);
+        animator.SetBool("Grounded", m_Grounded);
     }
 
     //Animator Event function
@@ -291,10 +307,10 @@ public sealed class EnemyController : MonoBehaviour
             anim.Activate(transform, target.transform);
             target = null;
             TransitionToState(State.Idle);
-            m_Animator.SetFloat("Speed", 0);
+            animator.SetFloat("Speed", 0);
             isAnimating = true;
         }
-        else throw new MissingComponentException("No AnimationInitializer set for \"" + m_Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\".");
+        else throw new MissingComponentException("No AnimationInitializer set for \"" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + "\".");
     }
 
     private bool Countdown(float duration) => (m_StateTimer += Time.deltaTime) >= duration;
