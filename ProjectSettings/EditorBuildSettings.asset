@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 49543f0cd3b73ef4e87d9103a27c22a4
+  - enabled: 1
     path: Assets/Scenes/Canneke.unity
     guid: a8218d1caa061bf44b06253b68398303
   m_configObjects: {}
