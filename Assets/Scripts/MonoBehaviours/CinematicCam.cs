@@ -14,7 +14,12 @@ public class CinematicCam : MonoBehaviour {
     public static float shakeSpeed = 0;
     public static float shakeAmp = 10;
 
+    private AudioSource grain;
+
+    public GameObject player;
+
     void Start() {
+        grain = Camera.main.GetComponent<AudioSource>();
         cm = GetComponent<VerySimpleCameraTracker>();
         GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
         camArea = null;
@@ -38,7 +43,8 @@ public class CinematicCam : MonoBehaviour {
         if(enemyZoom && camArea != null) {
             cm.ChangeCam(new Vector3(camArea.offset.x, camArea.offset.y, zoomOffset), 1.2f);
             transform.LookAt(zoomTarget, transform.up);
-            
+            Debug.Log( Mathf.Abs(1f / zoomOffset));
+            grain.volume = Mathf.Lerp(grain.volume, (1f / zoomOffset) * 100f, Time.deltaTime * 2);
         }
     }
 }
