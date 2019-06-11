@@ -12,6 +12,8 @@ public class FadeOut : MonoBehaviour {
 
     public bool OnTrigger = true, FadeIn = false;
 
+    public float fadeSpeed = 0.5f;
+
     public UnityEvent postFade;
 
     void Start() {
@@ -30,7 +32,7 @@ public class FadeOut : MonoBehaviour {
             overlay.enabled = true;
             if(FadeIn) {
                 if(!done) {
-                    if(overlay.color.a > 0.1f) overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 0), Time.deltaTime * 0.5f);
+                    if(overlay.color.a > 0.1f) overlay.color = Color.Lerp(overlay.color, new Color(0, 0, 0, 0), Time.deltaTime * fadeSpeed);
                     else done = true;
                 } 
             }
@@ -40,8 +42,8 @@ public class FadeOut : MonoBehaviour {
                     AudioListener.volume = Mathf.Lerp(AudioListener.volume, 0, Time.deltaTime);
                     if(overlay.color.a > 0.975f) {
                         done = true;
-                        postFade.Invoke();
                         reset();
+                        postFade.Invoke();
                     }
                 }
             }
