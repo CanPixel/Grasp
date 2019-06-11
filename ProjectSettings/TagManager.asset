@@ -9,6 +9,8 @@ TagManager:
   - CamArea
   - Level
   - Boulder
+  - Moth
+  - EnemyZoom
   layers:
   - Default
   - TransparentFX

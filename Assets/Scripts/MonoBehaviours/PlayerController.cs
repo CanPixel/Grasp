@@ -48,9 +48,13 @@ public class PlayerController : MonoBehaviour
     public bool lockControls = false;
 
     private bool canJump = true;
+    private FadeOut fade;
+
+    public EnemyController lastEnemy;
 
     private void Awake()
     {
+        fade = GetComponent<FadeOut>();
         animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
         m_PlayerCollider = GetComponent<CapsuleCollider>();
@@ -73,9 +77,29 @@ public class PlayerController : MonoBehaviour
         if (!isGrabbing && Mathf.Abs(m_Move.x) > 0.05f) transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, Vector3.up * (m_Move.x > 0 ? 90 : 270), Time.deltaTime * 20 * Mathf.Abs(m_Move.x));
     }
 
+    private void StartRespawn() {
+        lockControls = true;
+        fade.Fade();
+    }
+
+    public void ResetFade() {
+        lockControls = false;
+        enabled = true;
+        dead = false;
+        animator.Play("Standing", 0);
+        rigidbody.isKinematic = false;
+        transform.SetParent(null);
+        m_PlayerCollider.isTrigger = false;
+        desiredIKWeight = 1;
+        lastEnemy.ResetEnemy();
+    }
+
     private void Update() 
     {
-        if (dead) enabled = false;
+        if (dead) {
+            enabled = false;
+            StartRespawn();
+        }
         if (jumpDelay > 0) jumpDelay -= Time.deltaTime;
 
         //Input
@@ -215,5 +239,25 @@ public class PlayerController : MonoBehaviour
         //Head Look IK
         animator.SetLookAtPosition(ikTarget.position);
         animator.SetLookAtWeight(ikLookWeight, 0.1f, 0.2f);
+    }
+
+    void OnTriggerEnter(Collider col) {
+        if(col.gameObject.tag == "EnemyZoom") {
+            CinematicCam.zoomTarget = transform;
+            CinematicCam.enemyZoom = true;
+        }
+    }
+
+    void OnTriggerStay(Collider col) {
+        if(col.gameObject.tag == "EnemyZoom") {
+            CinematicCam.zoomOffset = -Mathf.Abs(Vector3.Distance(col.transform.position, transform.position));
+        }
+    }
+
+    void OnTriggerExit(Collider col) {
+        if(col.gameObject.tag == "EnemyZoom") {
+            CinematicCam.zoomTarget = null;
+            CinematicCam.enemyZoom = false;
+        }
     }
 }

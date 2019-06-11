@@ -6,6 +6,8 @@ public class Checkpoint : MonoBehaviour {
     [HideInInspector]
     public float x, y;
 
+    public int id;
+
     void Awake() {
         x = transform.position.x;
         y = transform.position.y;

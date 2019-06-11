@@ -35,13 +35,19 @@ public sealed class EnemyController : MonoBehaviour
     private Rigidbody m_Rigidbody;
     private PlayerController player;
     private Vector3 m_StartingPosition;
+    private Quaternion m_StartingRotation;
     private Vector3 m_StartingColliderCenter;
     private float m_StartingColliderHeight;
 
     private EnemySound sounds;
 
+    private CinematicCam camZoom;
+
+    public static float zoomDistance = 15;
+
     private void Awake()
     {
+        camZoom = Camera.main.GetComponent<CinematicCam>();
         sounds = GetComponent<EnemySound>();
         m_StartingPosition = transform.position;
         player = FindObjectOfType<PlayerController>();
@@ -52,6 +58,7 @@ public sealed class EnemyController : MonoBehaviour
         m_EnemyCollider = GetComponent<Collider>() as CapsuleCollider;
         m_StartingColliderCenter = m_EnemyCollider.center;
         m_StartingColliderHeight = m_EnemyCollider.height;
+        m_StartingRotation = transform.rotation;
     }
 
     private void Update()
@@ -140,11 +147,17 @@ public sealed class EnemyController : MonoBehaviour
         }
     }
 
+    private bool playerDied = false;
+
     private void Attack()
     {
+        if(!playerDied) {
+            SoundManager.PlaySound("PlayerKill", 1, 1);
+            playerDied = true;
+            player.lastEnemy = this;
+        }
         if (isAnimating) return;
         sounds.Scream();
-        sounds.Attack();
         Move();
         if (player.dead) TransitionToState(State.Detecting);
         if (remainingDistance > stoppingDistance)
@@ -154,6 +167,7 @@ public sealed class EnemyController : MonoBehaviour
         if (remainingDistance <= stoppingDistance)
         {
             animator.SetTrigger("Attack");
+            sounds.Attack();
         }
     }
 
@@ -185,7 +199,7 @@ public sealed class EnemyController : MonoBehaviour
 
     public void OnCastLightAt()
     {
-        Debug.Log($"OnCastLightAt called by {gameObject.name}.");
+        //Debug.Log($"OnCastLightAt called by {gameObject.name}.");
         if (player.dead) return;
         if (moth)
         {
@@ -230,6 +244,14 @@ public sealed class EnemyController : MonoBehaviour
             //Add a small force when in air to control airborne movement.
             m_Rigidbody.AddForce(transform.forward * jumpForce);
         }
+    }
+
+    public void ResetEnemy() {
+        target = player.transform;
+        m_Rigidbody.isKinematic = false;
+        transform.position = m_StartingPosition;
+        transform.rotation = m_StartingRotation;
+        isAnimating = false;
     }
 
     private bool MustJump()
