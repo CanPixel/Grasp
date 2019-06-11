@@ -20,7 +20,11 @@ public class BeatScale : MonoBehaviour {
     }
 
     private void BeatIndiv() {
-        transform.localScale *= sensitivity;
+        if(transform == null) return;
+        try {
+            transform.localScale *= sensitivity;
+        } catch(System.Exception) {}
+        finally {}
     }
 
     public static void Beat() {

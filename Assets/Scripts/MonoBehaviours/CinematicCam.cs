@@ -14,9 +14,11 @@ public class CinematicCam : MonoBehaviour {
     public static float shakeSpeed = 0;
     public static float shakeAmp = 10;
 
-    void Awake() {
+    void Start() {
         cm = GetComponent<VerySimpleCameraTracker>();
         GetComponent<Camera>().depthTextureMode = DepthTextureMode.Depth;
+        camArea = null;
+        enemyZoom = false;
     }
 
     void OnTriggerEnter(Collider col) {
@@ -33,7 +35,7 @@ public class CinematicCam : MonoBehaviour {
             float yShake = Mathf.Sin(Time.time * shakeSpeed) * shakeAmp;
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(camArea.rotation.x, camArea.rotation.y, camArea.rotation.z), Time.deltaTime * camArea.speed);
         }
-        if(enemyZoom) {
+        if(enemyZoom && camArea != null) {
             cm.ChangeCam(new Vector3(camArea.offset.x, camArea.offset.y, zoomOffset), 1.2f);
             transform.LookAt(zoomTarget, transform.up);
            // transform.localRotation = Quaternion.LookRotation(zoomTarget.position);

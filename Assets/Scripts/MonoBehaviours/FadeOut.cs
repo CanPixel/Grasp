@@ -17,6 +17,7 @@ public class FadeOut : MonoBehaviour {
     public UnityEvent postFade;
 
     void Start() {
+        AudioListener.volume = 1;
         StartFadeIn();
     }
 
