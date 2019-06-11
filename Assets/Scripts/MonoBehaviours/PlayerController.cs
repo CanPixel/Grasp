@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     private void JumpSound() {
         jumpDelay = 0.5f;
-        SoundManager.PlaySoundAt("Jump", transform.position, 0.05f, Random.Range(0.9f, 1f));
+        SoundManager.PlaySound("Jump", 0.05f, Random.Range(0.9f, 1f));
     }
 
     private void Animate()

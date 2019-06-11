@@ -38,8 +38,11 @@ public sealed class EnemyController : MonoBehaviour
     private Vector3 m_StartingColliderCenter;
     private float m_StartingColliderHeight;
 
+    private EnemySound sounds;
+
     private void Awake()
     {
+        sounds = GetComponent<EnemySound>();
         m_StartingPosition = transform.position;
         player = FindObjectOfType<PlayerController>();
         target = player.transform;
@@ -140,6 +143,7 @@ public sealed class EnemyController : MonoBehaviour
     private void Attack()
     {
         if (isAnimating) return;
+        sounds.Scream();
         Move();
         if (player.dead) TransitionToState(State.Detecting);
         if (remainingDistance > stoppingDistance)

@@ -54,7 +54,7 @@ public class PlayerParcours : MonoBehaviour
                     m_RopeRigidbody.velocity += m_Controller.rigidbody.velocity;
                     m_Controller.rigidbody.isKinematic = true;
                     m_Controller.isGrabbing = true;
-                    SoundManager.PlaySoundAt("Swing", transform.position, 0.5f, Random.Range(0.9f, 1f));
+                    SoundManager.PlaySound("Swing", 0.5f, Random.Range(0.9f, 1f));
                 }
             }
             else ReleaseRopeGrab();
