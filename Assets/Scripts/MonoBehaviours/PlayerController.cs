@@ -82,18 +82,6 @@ public class PlayerController : MonoBehaviour
         fade.Fade();
     }
 
-/* 
-    public void ResetFade() {
-        lockControls = false;
-        enabled = true;
-        dead = false;
-        animator.Play("Standing", 0);
-        rigidbody.isKinematic = false;
-        transform.SetParent(null);
-        m_PlayerCollider.isTrigger = false;
-        desiredIKWeight = 1;
-    }
-*/
     private void Update() 
     {
         if (dead) {
@@ -126,7 +114,7 @@ public class PlayerController : MonoBehaviour
                 //Jump. Convert current input to velocity and disable Root Motion controls
                 animator.applyRootMotion = false;
                 m_Grounded = false;
-                rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier * (Time.deltaTime * 90));
+                rigidbody.velocity += Vector3.Scale(m_Move, Vector3.up * m_JumpHeightMultiplier);
                 if(jumpDelay <= 0) JumpSound();
             }
             m_PlayerCollider.center = !isCrouching ? m_OriginalColliderCenter : m_ColliderCrouchCenter;

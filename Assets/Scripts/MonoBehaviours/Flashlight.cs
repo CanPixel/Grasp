@@ -25,13 +25,13 @@ public class Flashlight : MonoBehaviour {
     }
 
     void Update() {
-        if(Input.GetMouseButtonDown(2) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
+        if(Input.GetMouseButtonDown(1) && !PlayerInput.UsingAlternativeControls()) SwitchLight(!lightOn);
 
-        if (Input.GetMouseButton(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 0)) {
+        if (Input.GetMouseButton(1) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 0)) {
             beamDelay += Time.deltaTime;
             if (beamDelay > holdTillBeam) ActivateBeam(true);
         }
-        if(Input.GetMouseButtonUp(2) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 1)) ActivateBeam(false);
+        if(Input.GetMouseButtonUp(1) || (PlayerInput.UsingAlternativeControls() && PlayerInput.GetControllerValues().click == 1)) ActivateBeam(false);
 
         if (narrowBeam.activeSelf && castBeam) narrowBeam.transform.localScale = new Vector3(narrowBeam.transform.localScale.x, narrowBeam.transform.localScale.y, Mathf.Lerp(narrowBeam.transform.localScale.z, castingLength, Time.deltaTime * castingSpeed));
 
