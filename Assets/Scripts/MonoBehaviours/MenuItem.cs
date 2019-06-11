@@ -25,7 +25,7 @@ public class MenuItem : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer != -1 && timer < 0)
             {
-
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Canneke");
             }
         }
         if (!active)
@@ -42,7 +42,7 @@ public class MenuItem : MonoBehaviour
                     case MenuItemFunction.START:
                         leftDoorAnimator.enabled = rightDoorAnimator.enabled = true;
                         FindObjectOfType<PlayerController>().locked = false;
-                        
+                        timer = 2;
                         break;
                     case MenuItemFunction.CONTROLS:
                         break;
