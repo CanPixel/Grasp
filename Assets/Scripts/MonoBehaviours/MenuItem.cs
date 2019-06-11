@@ -5,6 +5,7 @@ public class MenuItem : MonoBehaviour
     public enum MenuItemFunction { START, CONTROLS, QUIT }
     public MenuItemFunction menuItem;
     public Animator leftDoorAnimator, rightDoorAnimator;
+    public GameObject uiInstructions;
 
     public bool active { get; set; } = false;
 
@@ -45,6 +46,7 @@ public class MenuItem : MonoBehaviour
                         timer = 2;
                         break;
                     case MenuItemFunction.CONTROLS:
+                        uiInstructions.SetActive(!uiInstructions.activeSelf);
                         break;
                     case MenuItemFunction.QUIT:
                         Application.Quit();
