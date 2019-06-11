@@ -4,11 +4,13 @@ public class MenuItem : MonoBehaviour
 {
     public enum MenuItemFunction { START, CONTROLS, QUIT }
     public MenuItemFunction menuItem;
+    public Animator leftDoorAnimator, rightDoorAnimator;
 
     public bool active { get; set; } = false;
 
     private Material thisMat;
     private Color emissionColor;
+    private float timer = -1;
 
     private void Awake()
     {
@@ -16,17 +18,20 @@ public class MenuItem : MonoBehaviour
         emissionColor = thisMat.GetColor("_EmissiveColor");
     }
 
-    public void OnCastLightAt()
-    {
-        Debug.Log(name);
-        thisMat.SetColor("_EmissiveColor", Color.white);
-        active = true;
-    }
-
     public void Update()
     {
-        thisMat.SetColor("_EmissiveColor", Color.black);
+        if (timer > -1)
+        {
+            timer -= Time.deltaTime;
+            if (timer != -1 && timer < 0)
+            {
 
+            }
+        }
+        if (!active)
+        {
+            thisMat.SetColor("_EmissiveColor", Color.black);
+        }
         if (active)
         {
             if (Input.GetMouseButtonDown(0))
@@ -35,7 +40,9 @@ public class MenuItem : MonoBehaviour
                 switch (menuItem)
                 {
                     case MenuItemFunction.START:
-
+                        leftDoorAnimator.enabled = rightDoorAnimator.enabled = true;
+                        FindObjectOfType<PlayerController>().locked = false;
+                        
                         break;
                     case MenuItemFunction.CONTROLS:
                         break;
@@ -53,5 +60,10 @@ public class MenuItem : MonoBehaviour
         }
     }
 
-
+    public void OnCastLightAt()
+    {
+        Debug.Log(name);
+        thisMat.SetColor("_EmissiveColor", Color.white);
+        active = true;
+    }
 }

@@ -679,7 +679,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463754211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8343a69ad481bb146b2fc3be0cf13c7a, type: 2}
   m_CullingMode: 0
@@ -698,7 +698,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463754212}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 938c757d0b5876b479503d5da510a123, type: 2}
   m_CullingMode: 0
@@ -709,8 +709,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &463754215
-MeshCollider:
+--- !u!65 &463754215
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -719,12 +719,11 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 6ca9722213ef49a4e9d3a2f75503fcb4, type: 3}
---- !u!64 &463754216
-MeshCollider:
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 11, z: 2.3}
+  m_Center: {x: 0, y: -5.3, z: 0}
+--- !u!65 &463754216
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -733,10 +732,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: 6ca9722213ef49a4e9d3a2f75503fcb4, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 11, z: 2.3}
+  m_Center: {x: 0, y: -5.3, z: 0}
 --- !u!1 &479388899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuItem: 2
+  leftDoorAnimator: {fileID: 0}
+  rightDoorAnimator: {fileID: 0}
 --- !u!1 &802669966
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,6 +1702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuItem: 0
+  leftDoorAnimator: {fileID: 463754214}
+  rightDoorAnimator: {fileID: 463754213}
 --- !u!1 &948306790 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100010, guid: 6ca9722213ef49a4e9d3a2f75503fcb4,
@@ -1734,6 +1736,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuItem: 1
+  leftDoorAnimator: {fileID: 0}
+  rightDoorAnimator: {fileID: 0}
 --- !u!1 &1082802046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,7 +1772,7 @@ MonoBehaviour:
   priority: 1.3
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 51b0a646b2ab6b649abb2b27bc535d83, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 0188ba2e967eb7b4c9747ff81a00ab83, type: 2}
 --- !u!4 &1082802048
 Transform:
   m_ObjectHideFlags: 0
