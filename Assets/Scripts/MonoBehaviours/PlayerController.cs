@@ -82,18 +82,6 @@ public class PlayerController : MonoBehaviour
         fade.Fade();
     }
 
-/* 
-    public void ResetFade() {
-        lockControls = false;
-        enabled = true;
-        dead = false;
-        animator.Play("Standing", 0);
-        rigidbody.isKinematic = false;
-        transform.SetParent(null);
-        m_PlayerCollider.isTrigger = false;
-        desiredIKWeight = 1;
-    }
-*/
     private void Update() 
     {
         if (dead) {

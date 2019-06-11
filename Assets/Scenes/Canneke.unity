@@ -8129,7 +8129,7 @@ MonoBehaviour:
   pc: {fileID: 2110709336}
   OnTrigger: 0
   FadeIn: 0
-  fadeSpeed: 0.05
+  fadeSpeed: 0.01
   postFade:
     m_PersistentCalls:
       m_Calls:

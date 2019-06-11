@@ -54,7 +54,8 @@ public class CinematicCam : MonoBehaviour {
             float yShake = Mathf.Sin(Time.time * closeness * 5) / 4;
             transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y + xShake, transform.localEulerAngles.z + yShake);
             grain.volume = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
-            chroma.intensity.value = vignette.intensity.value = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
+            chroma.intensity.value = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
+            vignette.intensity.value  = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 1);
         }
     }
 }
