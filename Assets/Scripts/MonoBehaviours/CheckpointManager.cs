@@ -16,6 +16,7 @@ public class CheckpointManager : MonoBehaviour {
     private PlayerController controller;
     private FadeOut fadeIn;
 
+    [HideInInspector]
     public CheckpointData checkpointData;
 
     void Awake() {
@@ -58,7 +59,11 @@ public class CheckpointManager : MonoBehaviour {
         return checkpoints[i];
     }
 
-    public IEnumerator Die() {
+    public void Die() {
+        StartCoroutine(IDie());
+    }
+
+    public IEnumerator IDie() {
         yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         beginAt = checkpointData.checkpoint;
         //MovePlayer(current);

@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
         fade.Fade();
     }
 
+/* 
     public void ResetFade() {
         lockControls = false;
         enabled = true;
@@ -91,9 +92,8 @@ public class PlayerController : MonoBehaviour
         transform.SetParent(null);
         m_PlayerCollider.isTrigger = false;
         desiredIKWeight = 1;
-        lastEnemy.ResetEnemy();
     }
-
+*/
     private void Update() 
     {
         if (dead) {

@@ -36,7 +36,7 @@ public class SoundManager : MonoBehaviour {
         instance = this;
         names = new string[sounds.Length];
 		for(int i = 0; i < sounds.Length; i++) names[i] = sounds[i].name;
-
+        StopAllCoroutines();
         StartCoroutine(HeartBeat());
     }
 

@@ -246,14 +246,6 @@ public sealed class EnemyController : MonoBehaviour
         }
     }
 
-    public void ResetEnemy() {
-        target = player.transform;
-        m_Rigidbody.isKinematic = false;
-        transform.position = m_StartingPosition;
-        transform.rotation = m_StartingRotation;
-        isAnimating = false;
-    }
-
     private bool MustJump()
     {
         //If an object is found at foot level, check if its highest surface is reachable with a jump.
