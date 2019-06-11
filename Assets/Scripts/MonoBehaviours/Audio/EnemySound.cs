@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySound : MonoBehaviour {
     public AudioSource scream;
-    public AudioSource hit;
+    public AudioSource hit, roar, flee;
 
     public AudioClip[] idle;
 
@@ -17,6 +17,15 @@ public class EnemySound : MonoBehaviour {
     public void Scream() {
         if(scream.isPlaying) return;
         scream.Play();
+    }
+
+    public void FleeSound() {
+        flee.Play();
+    }
+
+    public void Roar() {
+        roar.pitch = Random.Range(0.95f, 1.25f);
+        roar.Play();
     }
 
     public void Attack() {

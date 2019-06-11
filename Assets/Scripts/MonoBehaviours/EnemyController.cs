@@ -102,8 +102,7 @@ public sealed class EnemyController : MonoBehaviour
     private void Idle()
     {
         //Wait for player to get in range and player is in front of the enemy, then act.
-        if (!player.dead && Vector3.Distance(target.position, transform.position) <= detectionRange)
-        {
+        if (!player.dead && Vector3.Distance(target.position, transform.position) <= detectionRange) {
             TransitionToState(State.Detecting);
         }
         animator.SetFloat("Speed", 0, 1, 0.5f);
@@ -123,7 +122,7 @@ public sealed class EnemyController : MonoBehaviour
             }
             else
             {
-                TransitionToState(State.Idle);
+                    TransitionToState(State.Idle);
             }
         }
     }
@@ -333,6 +332,10 @@ public sealed class EnemyController : MonoBehaviour
     }
 
     private bool Countdown(float duration) => (m_StateTimer += Time.deltaTime) >= duration;
+
+    public void RoarSound() {
+        sounds.Roar();
+    }
 
     private void OnDrawGizmosSelected()
     {
