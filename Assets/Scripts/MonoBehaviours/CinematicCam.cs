@@ -38,7 +38,7 @@ public class CinematicCam : MonoBehaviour {
         if(enemyZoom && camArea != null) {
             cm.ChangeCam(new Vector3(camArea.offset.x, camArea.offset.y, zoomOffset), 1.2f);
             transform.LookAt(zoomTarget, transform.up);
-           // transform.localRotation = Quaternion.LookRotation(zoomTarget.position);
+            
         }
     }
 }
