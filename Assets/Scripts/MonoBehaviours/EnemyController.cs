@@ -144,6 +144,7 @@ public sealed class EnemyController : MonoBehaviour
     {
         if (isAnimating) return;
         sounds.Scream();
+        sounds.Attack();
         Move();
         if (player.dead) TransitionToState(State.Detecting);
         if (remainingDistance > stoppingDistance)

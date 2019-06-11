@@ -97,6 +97,20 @@ public class SoundManager : MonoBehaviour {
         return PlaySoundAt(name, Vector3.zero, volume, pitch, true);
 	}
 
+    public static AudioSource PlaySoundAt(AudioClip clip, Vector3 pos, float volume = 1, float pitch = 1) {
+        if(MUTE || instance == null) return null;
+        var temp = new GameObject(clip.name);
+		temp.transform.position = pos;
+		var source = temp.AddComponent<AudioSource>();
+        source.clip = clip;
+        source.pitch = pitch;
+        source.volume = volume;
+        source.spatialBlend = 1;
+        source.Play();
+        Destroy(temp, source.clip.length);
+        return source;
+    }
+
     public static AudioSource PlaySoundAt(string name, Vector3 pos, float volume = 1, float pitch = 1, bool twoDimensional = false) {
         if(MUTE || instance == null) return null;
 		var temp = new GameObject(name);
