@@ -44,6 +44,7 @@ public class CheckpointManager : MonoBehaviour {
     }
 
     public void MovePlayer(Vector2 pos) {
+        if (controller.locked) return;
         transform.position = new Vector3(pos.x, pos.y, transform.position.z);
         Camera.main.transform.position = new Vector3(pos.x, pos.y, Camera.main.transform.position.z);
     }
