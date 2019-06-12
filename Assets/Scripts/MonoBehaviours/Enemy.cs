@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using BehaviorTree;
 
+[System.Obsolete("Use EnemyController instead.")]
 public class Enemy : MonoBehaviour {
     public BNode lastNode;
 
