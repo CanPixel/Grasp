@@ -55,7 +55,7 @@ public class CinematicCam : MonoBehaviour {
             transform.LookAt(zoomTarget, transform.up);
             float xShake = Mathf.Cos(Time.time * closeness * 5) / 4;
             float yShake = Mathf.Sin(Time.time * closeness * 5) / 4;
-            transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y + xShake, transform.localEulerAngles.z + yShake);
+           // transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y + xShake, transform.localEulerAngles.z + yShake);
             grain.volume = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
             chroma.intensity.value = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
             vignette.intensity.value  = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 1);

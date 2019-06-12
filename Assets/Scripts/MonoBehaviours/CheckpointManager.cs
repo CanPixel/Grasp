@@ -6,46 +6,32 @@ using UnityEngine.SceneManagement;
 public class CheckpointManager : MonoBehaviour {
     public GameObject checkpointOBJ;
 
-    [Range(0, 11)]
-    public int beginAt = 0;
-
     public static float X;
     
-    private List<Checkpoint> checkpoints = new List<Checkpoint>();
-
     private PlayerController controller;
     private FadeOut fadeIn;
 
-    [HideInInspector]
-    public CheckpointData checkpointData;
+    public static CheckpointManager self;
 
     void Awake() {
-        checkpointData = CheckpointData.CreateInstance("CheckpointData") as CheckpointData;
+        self = this;
+        foreach(Transform child in checkpointOBJ.transform) CheckpointLoader.checkpoints.Add(child.GetComponent<Checkpoint>());
         fadeIn = Camera.main.GetComponent<FadeOut>();
         controller = GetComponent<PlayerController>();
-        foreach(Transform child in checkpointOBJ.transform) checkpoints.Add(child.GetComponent<Checkpoint>());
+        CheckpointLoader.SetCurrent(GetCheckpoint(CheckpointLoader.checkpoint));
+        MovePlayer(GetCheckpoint(CheckpointLoader.checkpoint));
     }
-
-    void Start() {
-        current = GetCheckpoint(beginAt);
-        MovePlayer(current);
-    }
-
-    [Header("Leave Empty")]
-    public Checkpoint current;
 
     void Update() {
         if(X < transform.position.x) X = transform.position.x;
-        checkpointData.checkpoint = current.id;
 
-        foreach(Checkpoint check in checkpoints) {
-            if(X > check.x) current = check;
+        foreach(Checkpoint check in CheckpointLoader.checkpoints) {
+            if(X > check.x) CheckpointLoader.checkpoint = check.id;
             else break;
         }
     }
 
     public void MovePlayer(Vector2 pos) {
-        if (controller.locked) return;
         transform.position = new Vector3(pos.x, pos.y, transform.position.z);
         Camera.main.transform.position = new Vector3(pos.x, pos.y, Camera.main.transform.position.z);
     }
@@ -55,8 +41,8 @@ public class CheckpointManager : MonoBehaviour {
     }
 
     public Checkpoint GetCheckpoint(int i) {
-        if(i > checkpoints.Count) return checkpoints[0];
-        return checkpoints[i];
+        if(i > CheckpointLoader.checkpoints.Count) return CheckpointLoader.checkpoints[0];
+        return CheckpointLoader.checkpoints[i];
     }
 
     public void Die() {
@@ -65,9 +51,5 @@ public class CheckpointManager : MonoBehaviour {
 
     public IEnumerator IDie() {
         yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-        beginAt = checkpointData.checkpoint;
-        //MovePlayer(current);
-        //controller.lockControls = false;
-        //fadeIn.reset();
     }
 }
