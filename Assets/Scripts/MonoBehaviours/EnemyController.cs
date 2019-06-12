@@ -45,6 +45,8 @@ public sealed class EnemyController : MonoBehaviour
 
     public static float zoomDistance = 15;
 
+    public Collider cameraZoom; 
+
     private void Awake()
     {
         camZoom = Camera.main.GetComponent<CinematicCam>();
@@ -67,18 +69,22 @@ public sealed class EnemyController : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
+                cameraZoom.enabled = false;
                 Idle();
                 break;
             case State.Detecting:
                 Detect();
                 break;
             case State.Chasing:
+                cameraZoom.enabled = true;
                 Chase();
                 break;
             case State.Attacking:
+                cameraZoom.enabled = true;
                 Attack();
                 break;
             case State.Hiding:
+                cameraZoom.enabled = false;
                 Hide();
                 break;
             default:

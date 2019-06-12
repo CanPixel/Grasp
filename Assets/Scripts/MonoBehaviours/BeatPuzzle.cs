@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeatPuzzle : MonoBehaviour {
     public GameObject door, button;
@@ -48,7 +49,7 @@ public class BeatPuzzle : MonoBehaviour {
             tar.y = -1;
             door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, tar, Time.deltaTime / 5);
         } else {
-            if(Input.GetMouseButtonDown(2)) lastClick = AudioSettings.dspTime;
+            if(Input.GetMouseButtonDown(1)) lastClick = AudioSettings.dspTime;
         }
     }
 
@@ -98,5 +99,9 @@ public class BeatPuzzle : MonoBehaviour {
             puzzle = true;
             SoundManager.PlaySoundAt("High", transform.position, 2f);
         }
+    }
+
+    public void LoadMenu() {
+        SceneManager.LoadScene(0);
     }
 }

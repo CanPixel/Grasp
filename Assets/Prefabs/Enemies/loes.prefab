@@ -1447,6 +1447,7 @@ MonoBehaviour:
   m_AllowJumps: 1
   m_CrouchColliderCenter: {x: 0, y: 0.62, z: 0}
   m_CrouchColliderHeight: 1.27
+  cameraZoom: {fileID: 5359881743816233282}
 --- !u!114 &1367179111628910554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,6 +1462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scream: {fileID: 2104549769976487825}
   hit: {fileID: 8932810222437507517}
+  roar: {fileID: 0}
+  flee: {fileID: 0}
   idle:
   - {fileID: 8300000, guid: b2c4225ae5f8380498faa486fcae0204, type: 3}
   - {fileID: 8300000, guid: 7c3b585b34c2d2a4196e9ad6a3d95d40, type: 3}

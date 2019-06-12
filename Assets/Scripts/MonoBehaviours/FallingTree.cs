@@ -33,6 +33,7 @@ public class FallingTree : MonoBehaviour {
     }
 
     protected void Hit() {
+        SoundManager.PlaySound("Splash1");    
         if(fall) return;
         hitDelay = 0.8f;
         hit++;
@@ -40,6 +41,8 @@ public class FallingTree : MonoBehaviour {
     }
 
     protected void Fall() {
+        SoundManager.PlaySound("Splash1");
+        SoundManager.PlaySound("CintiqDoor");
         Destroy(GetComponent<BoxCollider>());
         fall = true;
         rb.isKinematic = false;

@@ -37,7 +37,8 @@ public class MenuItem : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("A1 formaat is ook een formaat");
+                SoundManager.PlaySound("Splash1");
+                //Debug.Log("A1 formaat is ook een formaat");
                 switch (menuItem)
                 {
                     case MenuItemFunction.START:
@@ -64,7 +65,7 @@ public class MenuItem : MonoBehaviour
 
     public void OnCastLightAt()
     {
-        Debug.Log(name);
+        //Debug.Log(name);
         thisMat.SetColor("_EmissiveColor", Color.white);
         active = true;
     }

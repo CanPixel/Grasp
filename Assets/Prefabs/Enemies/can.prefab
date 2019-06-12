@@ -184,6 +184,7 @@ MonoBehaviour:
   m_AllowJumps: 1
   m_CrouchColliderCenter: {x: 0, y: 0.62, z: 0}
   m_CrouchColliderHeight: 1.27
+  cameraZoom: {fileID: 7063072419310697737}
 --- !u!114 &8846983549736494114
 MonoBehaviour:
   m_ObjectHideFlags: 0

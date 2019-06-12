@@ -61,7 +61,7 @@ public class FadeOut : MonoBehaviour {
         if(!OnTrigger) return;
         if(col.tag == "Player") {
             fade = true;
-            pc.lockControls = true;
+            if(pc != null) pc.lockControls = true;
         }
     }
 
