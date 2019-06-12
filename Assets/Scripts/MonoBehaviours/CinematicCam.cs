@@ -11,6 +11,7 @@ public class CinematicCam : MonoBehaviour {
     public static bool enemyZoom = false;
     public static Transform zoomTarget;
     public static float zoomOffset;
+    public static Transform enemy;
 
     public static float shakeSpeed = 0;
     public static float shakeAmp = 10;
@@ -39,7 +40,9 @@ public class CinematicCam : MonoBehaviour {
         }
     }
 
-    void FixedUpdate() {
+    void LateUpdate() {
+        if(enemy == null) enemyZoom = false;
+
         if(camArea != null && !enemyZoom) {
             cm.ChangeCam(camArea.offset, camArea.speed);
             float xShake = Mathf.Cos(Time.time * shakeSpeed) * shakeAmp;
@@ -57,5 +60,6 @@ public class CinematicCam : MonoBehaviour {
             chroma.intensity.value = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 2);
             vignette.intensity.value  = Mathf.Lerp(grain.volume, closeness, Time.deltaTime * 1);
         }
+        if(!enemyZoom) vignette.intensity.value = chroma.intensity.value = grain.volume = Mathf.Lerp(grain.volume, 0, Time.deltaTime * 2);
     }
 }

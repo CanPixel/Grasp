@@ -233,6 +233,7 @@ public class PlayerController : MonoBehaviour
         if(col.gameObject.tag == "EnemyZoom") {
             CinematicCam.zoomTarget = transform;
             CinematicCam.enemyZoom = true;
+            CinematicCam.enemy = col.gameObject.transform.parent;
         }
     }
 
@@ -246,6 +247,7 @@ public class PlayerController : MonoBehaviour
         if(col.gameObject.tag == "EnemyZoom") {
             CinematicCam.zoomTarget = null;
             CinematicCam.enemyZoom = false;
+            CinematicCam.enemy = null;
         }
     }
 }
